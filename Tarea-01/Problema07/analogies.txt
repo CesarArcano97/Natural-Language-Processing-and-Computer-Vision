@@ -1,0 +1,21 @@
+Analogy: ['comida', 'deliciosa'] - ['horrible']
+Result: [('rica', 0.8328135013580322), ('rico', 0.7926418781280518), ('volveremos', 0.7855753302574158), ('ambiente', 0.7844880223274231), ('auta', 0.7840203642845154)]
+
+Analogy: ['precio', 'barato'] - ['caro']
+Result: [('razonable', 0.7808195948600769), ('comparado', 0.7793508172035217), ('accesible', 0.7692307829856873), ('alto', 0.7551509737968445), ('lugares', 0.7541834712028503)]
+
+Analogy: ['hotel', 'caro'] - ['barato']
+Result: [('limpieza', 0.8731749057769775), ('instalaciones', 0.8627216815948486), ('servicios', 0.8427674770355225), ('cuartos', 0.8375747203826904), ('mantenimiento', 0.8359137773513794)]
+
+Analogy: ['servicio', 'excelente'] - ['malo']
+Result: [('saºper', 0.8547041416168213), ('impecable', 0.845386266708374), ('gracias', 0.8434906601905823), ('relajado', 0.836738646030426), ('rica', 0.8356362581253052)]
+
+Analogy: ['tulum', 'playa'] - ['ciudad']
+Result: [('arena', 0.7776058316230774), ('bucear', 0.774127721786499), ('pasamos', 0.7707449197769165), ('privada', 0.7641632556915283), ('complejo', 0.758270800113678)]
+
+Analogy: ['queretaro', 'moderno'] - ['antiguo']
+Result: Error: "Key 'queretaro' not present in vocabulary"
+
+Analogy: ['cancun', 'caro'] - ['barato']
+Result: [('descuidada', 0.9384412169456482), ('ven', 0.9309740662574768), ('extraordinaria', 0.9295415282249451), ('tengan', 0.9285472631454468), ('simas', 0.9282010793685913)]
+

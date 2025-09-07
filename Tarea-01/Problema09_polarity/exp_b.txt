@@ -1,0 +1,24 @@
+Resultados experimento B
+
+Accuracy: 0.4093
+F1-macro: 0.4055
+
+Matriz de confusión:
+[[112  59  35  20  14]
+ [ 80  83  57  31  19]
+ [ 30  68 104  59  39]
+ [  8  32  66 122 102]
+ [  6  19  29 113 193]]
+
+Reporte de clasificación:
+              precision    recall  f1-score   support
+
+         1.0       0.47      0.47      0.47       240
+         2.0       0.32      0.31      0.31       270
+         3.0       0.36      0.35      0.35       300
+         4.0       0.35      0.37      0.36       330
+         5.0       0.53      0.54      0.53       360
+
+    accuracy                           0.41      1500
+   macro avg       0.41      0.41      0.41      1500
+weighted avg       0.41      0.41      0.41      1500

@@ -1,0 +1,20 @@
+Resultados experimento D
+
+Accuracy: 0.9080
+F1-macro: 0.9072
+
+Matriz de confusión:
+[[403   8  25]
+ [ 23 394  36]
+ [ 25  21 565]]
+
+Reporte de clasificación:
+              precision    recall  f1-score   support
+
+  Attractive       0.89      0.92      0.91       436
+       Hotel       0.93      0.87      0.90       453
+  Restaurant       0.90      0.92      0.91       611
+
+    accuracy                           0.91      1500
+   macro avg       0.91      0.91      0.91      1500
+weighted avg       0.91      0.91      0.91      1500
