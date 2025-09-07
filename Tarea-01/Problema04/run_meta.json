@@ -1,0 +1,15 @@
+{
+  "csv": "/home/cesar/Descargas/MeIA.csv",
+  "text_col": "Review",
+  "class_col": "Type",
+  "save_dir": "/home/cesar/Documentos/Tareas-CIMAT/Tercer_Semestre/NLP+CV/Tarea-01/Problema04",
+  "top_n": 20,
+  "remove_stop": true,
+  "keep_punct": false,
+  "plots": true,
+  "model": "es_core_news_md",
+  "alpha": 0.1,
+  "n_proc": 1,
+  "batch_size": 128,
+  "max_docs": null
+}

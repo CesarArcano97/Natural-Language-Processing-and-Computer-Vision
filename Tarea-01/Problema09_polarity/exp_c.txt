@@ -1,0 +1,24 @@
+Resultados experimento C
+
+Accuracy: 0.4033
+F1-macro: 0.3961
+
+Matriz de confusión:
+[[108  64  35  16  17]
+ [ 90  72  62  24  22]
+ [ 31  69 101  68  31]
+ [ 10  28  74 123  95]
+ [  6  14  31 108 201]]
+
+Reporte de clasificación:
+              precision    recall  f1-score   support
+
+         1.0       0.44      0.45      0.45       240
+         2.0       0.29      0.27      0.28       270
+         3.0       0.33      0.34      0.33       300
+         4.0       0.36      0.37      0.37       330
+         5.0       0.55      0.56      0.55       360
+
+    accuracy                           0.40      1500
+   macro avg       0.40      0.40      0.40      1500
+weighted avg       0.40      0.40      0.40      1500
