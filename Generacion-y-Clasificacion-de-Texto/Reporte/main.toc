@@ -1,0 +1,71 @@
+\babel@toc {spanish}{}\relax 
+~\hfill \textbf {Página}\par 
+\contentsline {section}{Modelos de Lenguaje}{3}{section*.1}%
+\contentsline {section}{Perplejidad}{4}{section*.2}%
+\contentsline {subsection}{PPL en modelos de Redes Neuronales}{5}{section*.3}%
+\contentsline {section}{Parte A | Generación de texto}{6}{section*.4}%
+\contentsline {subsection}{Limpieza para corpus generativo y para corpus clasificatorio}{7}{section*.5}%
+\contentsline {subsection}{Exploratorio del corpus}{7}{section*.5}%
+\contentsline {section}{Parte A | RNN}{10}{section*.9}%
+\contentsline {subsection}{Formulación probabilística de los Modelos de Lenguaje (ML)}{10}{section*.10}%
+\contentsline {subsection}{Arquitectura de las RNN}{11}{section*.10}%
+\contentsline {subsection}{Arquitectura Utilizada e Hiperparámetros}{12}{section*.10}%
+\contentsline {subsubsection}{Estructura del Modelo}{12}{section*.11}%
+\contentsline {subsubsection}{Hiperparámetros de Entrenamiento}{13}{Item.4}%
+\contentsline {subsection}{Resultados}{13}{table.caption.12}%
+\contentsline {subsection}{Conclusiones}{14}{figure.caption.13}%
+\contentsline {section}{Parte A | LSTM}{16}{section*.14}%
+\contentsline {subsection}{Compuerta del Olvido (forget gate)}{17}{figure.caption.15}%
+\contentsline {subsection}{Compuerta de Adición (add gate)}{18}{figure.caption.15}%
+\contentsline {subsection}{Compuerta de Salida (output gate)}{18}{figure.caption.15}%
+\contentsline {subsection}{Arquitectura Utilizada e Hiperparámetros}{18}{figure.caption.15}%
+\contentsline {subsubsection}{Estructura del Modelo}{19}{section*.16}%
+\contentsline {subsubsection}{Hiperparámetros de Entrenamiento}{19}{Item.8}%
+\contentsline {subsection}{Resultados}{19}{figure.caption.18}%
+\contentsline {subsection}{Conclusiones}{21}{lstnumber.4.1}%
+\contentsline {section}{Parte A | GRU}{22}{section*.19}%
+\contentsline {subsection}{La célula GRU y sus compuertas}{22}{section*.20}%
+\contentsline {subsection}{Arquitectura Utilizada e Hiperparámetros}{23}{section*.20}%
+\contentsline {subsubsection}{Arquitectura del Modelo GRU}{23}{section*.21}%
+\contentsline {subsubsection}{Hiperparámetros de Entrenamiento}{24}{Item.12}%
+\contentsline {subsection}{Resultados}{24}{table.caption.22}%
+\contentsline {subsection}{Conclusiones}{25}{lstnumber.6.1}%
+\contentsline {section}{Introducción a los Transformers y su relación con los LLM}{27}{section*.23}%
+\contentsline {subsection}{El cambio de paradigma}{27}{section*.24}%
+\contentsline {subsection}{\textit {Self-Attention}}{28}{section*.24}%
+\contentsline {subsection}{\textit {Multi-head Attention}}{29}{section*.24}%
+\contentsline {subsection}{Transformers populares}{29}{section*.24}%
+\contentsline {subsubsection}{GPT (Generative Pretrained Transformer)}{29}{section*.25}%
+\contentsline {subsubsection}{LLaMA (Large Language Model Meta AI)}{30}{section*.25}%
+\contentsline {subsubsection}{DeepSeek}{30}{section*.25}%
+\contentsline {subsubsection}{Otros modelos influyentes}{31}{section*.25}%
+\contentsline {section}{Parte A | TinyLLaMA-1.1B}{32}{section*.26}%
+\contentsline {subsection}{Resultados}{32}{section*.27}%
+\contentsline {subsection}{Conclusiones}{33}{lstnumber.9.1}%
+\contentsline {section}{Parte A | Mistral-7B LoRA}{35}{section*.28}%
+\contentsline {subsection}{Mistral-7B LoRA}{35}{section*.29}%
+\contentsline {subsection}{Resultados}{37}{section*.29}%
+\contentsline {subsection}{Conclusiones}{39}{lstnumber.12.19}%
+\contentsline {section}{Parte B | CNN}{41}{section*.30}%
+\contentsline {subsection}{Arquitectura CNN}{41}{section*.31}%
+\contentsline {subsection}{Resultados}{41}{section*.31}%
+\contentsline {subsection}{Visualización de Modelos}{41}{table.caption.32}%
+\contentsline {subsection}{Conclusiones}{43}{figure.caption.34}%
+\contentsline {section}{Parte B | RNN}{45}{section*.35}%
+\contentsline {subsection}{Arquitectura RNN}{45}{section*.36}%
+\contentsline {subsection}{Resultados}{46}{section*.36}%
+\contentsline {subsection}{Visualización de Modelos}{46}{table.caption.37}%
+\contentsline {subsection}{Conclusiones}{47}{figure.caption.39}%
+\contentsline {section}{Parte B | LSTM}{49}{section*.40}%
+\contentsline {subsection}{Arquitectura LSTM}{49}{section*.41}%
+\contentsline {subsubsection}{Un Modelo de Representación Global}{49}{section*.41}%
+\contentsline {subsection}{Conclusiones}{50}{section*.41}%
+\contentsline {subsection}{Conclusiones}{51}{table.caption.42}%
+\contentsline {subsection}{Visualización de Modelos}{51}{table.caption.42}%
+\contentsline {section}{Parte B | GRU}{54}{section*.45}%
+\contentsline {subsection}{Resultados}{54}{section*.46}%
+\contentsline {subsection}{Conclusiones}{55}{table.caption.47}%
+\contentsline {subsection}{Visualización de Modelos}{55}{table.caption.47}%
+\contentsline {section}{Tranformers para clasificación de textos}{58}{section*.50}%
+\contentsline {subsection}{Clasificación de texto con Transformers}{58}{section*.51}%
+\contentsline {subsection}{Contraste con el enfoque generativo}{59}{section*.51}%

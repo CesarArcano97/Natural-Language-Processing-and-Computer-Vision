@@ -1,0 +1,248 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Enunciado %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{myblock}
+\phantomsection\addcontentsline{toc}{section}{Parte B | LSTM}
+\section*{Parte B | LSTM}
+
+    Usando la misma base de la tarea 1, entrena un modelo por cada arquitectura: 
+    CNN, RNN/LSTM/GRU, y un Transformer de Hugging Face con fine-tuning. Reporta
+    accuracy y F1, incluye matriz de confusión y análisis de errores característicos.  
+
+\end{myblock}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Si bien la arquitectrura interna de la celda LSTM es la misma tanto para 
+generación de texto como para clasificación de texto, el objetivo final, y la
+estructura del modelo, cambian. 
+
+
+\subsection{Arquitectura LSTM}
+
+En la tarea de generación, el modleo funciona como un Language Model. El objetivo
+es predecir el siguiente token de la secuencia $y_i$, dado el contexto de los
+tokens anteriores $(x_1, x_2,...,x_n)$. 
+
+Como se implementó en el código y arquitectura de la parte A, la salida LSTM en 
+cada paso a través del tiempo $h_t$ se pasa por una capa lineal de proyeción, seguida
+de una Softmax sobre todo el vocabulario. La función de pérdida, como lo 
+es la Entropía Cruzada, se calcula en cada token. De esa manera podemos hacer 
+comparación de distribuciones de probabilidad predicah en el token real que
+sigue en la secuencia. El modleo se entrena para minimizar dicha pérdida a lo 
+largo de la secuencia.
+
+\[
+    \hat{y}_t = \mathrm{Softmax}(W_o h_t + b_o)
+\]
+\[
+    \mathcal{L}_{\text{generación}} = \sum_{t=1}^{L} \mathrm{CrossEntropy}(\hat{y}_t, y_t)
+\]
+
+El objetivo es aprender la distribución de probabilidad $P(w_t | w_{1:t-1})$.
+
+\subsubsection{Un Modelo de Representación Global}
+
+Para clasificación de texto, no queremos predecir el siguiente token, queremos 
+asignarle una etiqueta única a toda la secuencia o documento. Por lo tanto, no
+nos interesan las salidad de la LSTM a lo largo del tiempo, sino una Representación
+vectorial que resuma el contenido global de la secuencia completa. 
+
+El modelo procesa la secuencia de entrada, para de esa manera obtener los estados
+ocultos en cada paso, $H = [h_1, h_2,...,h_L]$. A partir de ahí, la diferencia
+clave es la introducción de una capa de Pooling. 
+
+\begin{itemize}
+    \item \textbf{Agregación de Información (Pooling)}: en lugar de usar cada
+    estado oculto $h_t$, se aplica una operación de pooling sobre todos los estados
+    para obtener un único vector de tamaño fijo. Se pueden realizar diversos ajustes
+    como la creación de un MeanPooling tal como vimos en RNN, pero el punto importante
+    es que se toma un estado oculto final, que queda a modo de resumen de toda la
+    secuencia que lo precede.
+    \item \textbf{Proyección de Clases}: este vector resumen se pasa a la cabeza de la 
+    clasificación, que es una capa lineal final que proyecta el vector al número de 
+    clases deseadas, por ejemplo, 5 para la polaridad que tenemos de 1.0 a 5.0 estrellas.
+\end{itemize}
+
+\[
+    \mathbf{v} = \mathrm{Pool}(h_1, h_2, \dots, h_L)
+\]
+\[
+    \hat{\mathbf{y}}_{\text{clase}} = \mathrm{Softmax}(W_{\text{clf}} \mathbf{v} + b_{\text{clf}})
+\]
+
+La función de pérdida (`CrossEntropyLoss`) se calcula una sola vez por 
+secuencia, comparando la predicción final con la etiqueta verdadera de
+la secuencia.
+
+\[
+    \mathcal{L}_{\text{clasificación}} = \mathrm{CrossEntropy}(\hat{\mathbf{y}}_{\text{clase}}, \mathbf{y}_{\text{clase}})
+\]
+
+En resumen, mientras que el modelo generativo es un traductor 
+secuencia-a-secuencia (de $N$ tokens a $N$ distribuciones de probabilidad), 
+el modelo de clasificación es un codificador secuencia-a-vector, que condensa
+toda la información de la secuencia en una única representación para tomar 
+una decisión final. Esta distinción es la que justifica el cambio en la
+arquitectura de salida y la forma en que se calcula la pérdida.
+
+\subsection{Conclusiones}
+
+La primera implementación de una BiLSTM de una sola capa con \emph{max-pooling} no solo superó a la RNN simple, sino que estableció un nuevo estado del arte para el problema, alcanzando un F1-macro en test superior a 0.51. Sin embargo, este éxito vino acompañado de un **sobreajuste extremo**, con métricas en el conjunto de entrenamiento que superaban el 90% mientras que en validación apenas rondaban el 50%. Este fenómeno motivó una serie de experimentos enfocados en dos frentes: aumentar la complejidad del modelo (más capas) y aplicar técnicas de regularización más robustas para mejorar la generalización.
+
+\begin{table}[h!]
+\centering
+\caption{BiLSTM — Resumen de experimentos en MeIA (polaridad 1–5), transpuesto.}
+\label{tab:lstm_meia_transposed}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Parámetro} & \textbf{\texttt{...\_bilstm\_max\_lr1e-3}} & \texttt{...\_bilstm4\_max\_do20} & \texttt{...\_bilstm\_maxmean...} & \texttt{...\_bilstm\_max\_regstrong} \\
+\midrule
+\textbf{Capas LSTM}        & \textbf{1}          & 2                   & 2                & \textbf{1} \\
+\textbf{Pooling}           & \textbf{max}        & max                 & max+mean         & \textbf{max} \\
+\textbf{Regularización}    & Base                & Base                & Base             & Fuerte (D.O., WD, W.D.) \\
+\textbf{Val F1-M}          & 0.495               & 0.493               & 0.489            & \textbf{0.505} \\
+\textbf{Test Acc / F1-M}   & \textbf{0.514 / 0.515} & 0.480 / 0.461       & 0.474 / 0.470    & 0.484 / 0.477 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Conclusiones}
+
+\begin{itemize}
+    \item El modelo baseline de BiLSTM de una capa se consolidó como el de mejor rendimiento de todas las arquitecturas recurrentes y convolucionales, 
+    alcanzando un F1-macro de 0.515 en el conjunto de prueba.
+    \item El sobreajuste fue el principal desafío. A pesar de los intentos por mitigarlo, ningún modelo regularizado superó al baseline en el conjunto de test,
+    aunque sí lograron reducir la brecha entre las métricas de entrenamiento y validación.
+    \item Aumentar la profundidad del modelo (usando 2 capas de BiLSTM) resultó contraproducente. Incrementó el tiempo de cómputo y la complejidad sin una
+    mejora en la generalización, de hecho, el rendimiento en test disminuyó.
+    \item La estrategia de regularización fuerte (mayor dropout, weight decay y word dropout) logró el mejor F1-macro en el conjunto de validación
+    (0.505), indicando que el modelo estaba generalizando mejor a ese subconjunto de datos. Sin embargo, esta mejora no se tradujo al conjunto de test, donde el
+    rendimiento fue inferior al del baseline.
+    \item Se reitera la conclusión de secciones anteriores: el MaxPooling sigue siendo la estrategia de agregación más efectiva para este corpus,
+    superando a la combinación \texttt{max+mean}.
+\end{itemize}
+
+La arquitectura BiLSTM demostró ser la más poderosa hasta el momento, con un modelo simple de una sola capa estableciendo un nuevo benchmark de rendimiento.
+El análisis de los experimentos demuestra que el modelo más simple, a pesar de un sobreajuste masivo en el entrenamiento, encontró 
+un mínimo en el espacio de parámetros que generalizó de forma más efectiva al conjunto de prueba final. Las intervenciones lógicas para mejorar el modelo, aumentar 
+su capacidad con más capas o forzar la generalización con una regularización más estricta, paradójicamente degradaron su rendimiento en la evaluación final. 
+Esto indica que las técnicas de regularización, si bien controlaron el sobreajuste, pudieron haber impedido al modelo aprender ciertos patrones cruciales 
+presentes en el corpus, o que el conjunto de validación no fue un proxy perfecto para el de test. A pesar de todo, la BiLSTM se establece como el mejor modelo
+de redes neuronales hasta el momenoto.
+
+\subsection{Visualización de Modelos}
+
+% --- Figura: Matrices de Confusión para LSTM ---
+\begin{figure}[h!]
+    \centering
+
+    % --- PRIMERA FILA: DOS IMÁGENES ---
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png} 
+        \caption{\textbf{\texttt{...max\_lr1e-3}}}
+        \label{fig:conf_lstm_exp1}
+    \end{subfigure}
+    \hfill % Espacio horizontal flexible entre las imágenes
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png}
+        \caption{\texttt{...bilstm4\_max...}}
+        \label{fig:conf_lstm_exp2}
+    \end{subfigure}
+
+    \vspace{1em} % Espacio vertical entre filas para mayor claridad
+
+    % --- SEGUNDA FILA: UNA IMAGEN (CENTRADA) ---
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png} 
+        \caption{\texttt{...maxmean...}}
+        \label{fig:conf_lstm_exp3}
+    \end{subfigure}
+
+    \vspace{1em} % Espacio vertical entre filas
+
+    % --- TERCERA FILA: DOS IMÁGENES ---
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png} 
+        \caption{\texttt{...max\_regstrong}}
+        \label{fig:conf_lstm_exp4}
+    \end{subfigure}
+    \hfill % Espacio horizontal flexible
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png} 
+        \caption{\texttt{...h192\_do60...}}
+        \label{fig:conf_lstm_exp5}
+    \end{subfigure}
+    
+    \caption{Matrices de confusión para los cinco experimentos de BiLSTM. El modelo baseline (primera imagen, arriba a la izquierda) muestra el mejor rendimiento.}
+    \label{fig:confusion_matrices_lstm}
+\end{figure}
+
+%%%%%%%%%%%%%%%% CURVAS ROC %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- Figura: Curvas ROC OVR para LSTM ---
+\begin{figure}[h!]
+    \centering
+
+    % --- PRIMERA FILA: DOS IMÁGENES ---
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png} 
+        \caption{\textbf{\texttt{...max\_lr1e-3}}}
+        \label{fig:roc_lstm_exp1}
+    \end{subfigure}
+    \hfill % Espacio horizontal flexible
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png}
+        \caption{\texttt{...bilstm4\_max...}}
+        \label{fig:roc_lstm_exp2}
+    \end{subfigure}
+
+    \vspace{1em} % Espacio vertical para separar filas
+
+    % --- SEGUNDA FILA: UNA IMAGEN (CENTRADA) ---
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png} 
+        \caption{\texttt{...maxmean...}}
+        \label{fig:roc_lstm_exp3}
+    \end{subfigure}
+
+    \vspace{1em} % Espacio vertical para separar filas
+
+    % --- TERCERA FILA: DOS IMÁGENES ---
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png} 
+        \caption{\texttt{...max\_regstrong}}
+        \label{fig:roc_lstm_exp4}
+    \end{subfigure}
+    \hfill % Espacio horizontal flexible
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png} 
+        \caption{\texttt{...h192\_do60...}}
+        \label{fig:roc_lstm_exp5}
+    \end{subfigure}
+    
+    \caption{Curvas ROC One-vs-Rest (OVR) para los cinco experimentos de BiLSTM. Se evalúa la capacidad de discriminación de cada clase.}
+    \label{fig:roc_curves_lstm}
+\end{figure}
+
+
+\clearpage

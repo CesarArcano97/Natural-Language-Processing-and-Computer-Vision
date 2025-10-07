@@ -1,0 +1,202 @@
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage[utf8]{inputenc}
+% babel package is already loaded in main.tex, no need to duplicate
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\decimalpoint
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{tensor}
+\usepackage{cancel}
+\usepackage{sidecap}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{stix}
+\usepackage{tikz}
+% xcolor is already loaded in main.tex with options
+\usepackage{pgfplots}
+% cancel package already loaded above
+\usepackage{geometry}
+\usepackage{empheq}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepackage[T1]{fontenc}
+% hyperref already loaded in main.tex
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{ \thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\sidecaptionvpos{figure}{tl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%      Underline Eqs        %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newsavebox\MBox
+\newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
+  \rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{0.5pt}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%        CONSTANTES                %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\mom{\sqrt{\frac{m\omega}{2\hbar}}}
+\newcommand\momsq{\frac{m\omega}{2\hbar}}
+\newcommand\dad{\s\begin{lstlisting}
+import numpy as np
+
+A = np.array([[1, 2],
+              [3, 4]])
+B = np.array([[0, 1],
+              [2, 3]])
+v = np.array([7, 9])        
+
+AB = A @ B                  
+R1 = AB + v                 
+R2 = AB + np.broadcast_to(v, AB.shape)   
+
+print("AB shape:", AB.shape, "\nAB:\n", AB)
+print("v shape:", v.shape)
+print("Resultado R1:\n", R1)
+print("Resultado R2:\n", R2)
+
+'''
+En este código se ilustra cómo funciona el broadcasting en NumPy:
+
+1. Se define una matriz A y otra B, y se calcula AB con producto matricial.
+2. El vector v = (7,9) tiene forma (2,), que NumPy interpreta como (1,2). 
+   Al sumarlo con AB (2,2), se expande automáticamente por filas: R1.
+3. Con np.broadcast_to(v, AB.shape) se fuerza explícitamente una vista 
+   de forma (2,2), que se suma a AB para dar R2.
+4. Numéricamente R1 y R2 son iguales, pero internamente R2 utiliza 
+   una vista broadcasted de solo lectura, compartiendo memoria con v.
+
+En resumen, broadcasting permite que arreglos de distintas dimensiones 
+se expandan virtualmente para realizar operaciones vectorizadas sin 
+necesidad de copiar datos.
+'''
+\end{lstlisting}
+qrt{\frac{m\omega\hbar}{2}}ie^{-\abs{z}^2/2}}
+\newcommand\gus{\sqrt{\frac{\hbar}{2m\omega}}}
+\newcommand\gussq{\frac{\hbar}{2m\omega}}
+\newcommand\adag{\hat{a}^{\dagger}}
+\newcommand\ah{\hat{a}}
+
+\newcommand{\ylm}[2]{Y_{#1}^{#2}}
+\newcommand{\fun}[3]{\Psi_{#1 #2 #3}(r,\theta,\phi)=R_{#1 #2}(r)Y_{#2}^{#3}(\theta,\phi)}
+\newcommand{\funup}[3]{\Psi_{#1 #2 #3,\,+\frac{1}{2}}(r,\theta,\phi)=R_{#1 #2}(r)Y_{#2}^{#3}(\theta,\phi)}
+\newcommand{\fundown}[3]{\Psi_{#1 #2 #3,\,-\frac{1}{2}}(r,\theta,\phi)=R_{#1 #2}(r)Y_{#2}^{#3}(\theta,\phi)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%     PALETA DE COLORES         %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{Verde}{HTML}{31B189}
+\definecolor{Azul}{HTML}{7ACE67}
+\definecolor{Naranja}{HTML}{FFC872}
+\definecolor{Crema}{HTML}{FFE3B3}
+\definecolor{AzulUV}{HTML}{1C36A1}
+\definecolor{VerdeUV}{HTML}{00AA33}
+\definecolor{RCimat}{HTML}{73243D}
+\definecolor{GCimat}{HTML}{ACAAAB}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%        Configuración bloques grises    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetikzlibrary{positioning, shapes}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usetikzlibrary{shadings,shadows}
+\newenvironment{myblock}[1]{%
+    \tcolorbox[beamer,%
+    noparskip,breakable,
+    colback=white,colframe=RCimat,%
+    colbacklower=white!75!RCimat,%
+    title=#1,
+    coltitle = black]}%
+    {\endtcolorbox}
+
+
+    
+\newtcbox{\othermathbox}[1][]{nobeforeafter, tcbox raise base, enhanced, sharp corners, colback=white!10, colframe=AzulUV!30!black,drop fuzzy shadow, left=1em, top=1em, right=1em, bottom=1em}
+
+% Syntax: \colorboxed[<color model>]{<color specification>}{<math formula>}
+\newcommand*{\colorboxed}{}
+\def\colorboxed#1#{%
+  \colorboxedAux{#1}%
+}
+\newcommand*{\colorboxedAux}[3]{%
+  % #1: optional argument for color model
+  % #2: color specification
+  % #3: formula
+  \begingroup
+    \colorlet{cb@saved}{.}%
+    \color#1{#2}%
+    \boxed{%
+      \color{cb@saved}%
+      #3%
+    }%
+  \endgroup
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%          Para poner código en R        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{language=R,
+    basicstyle=\fontsize{9}{10}\selectfont\ttfamily,
+    stringstyle=\color{purple},
+    otherkeywords={0,1,2,3,4,5,6,7,8,9},
+    morekeywords={TRUE,FALSE},
+    deletekeywords={data,frame,length,as,character},
+    keywordstyle=\color{blue},
+    commentstyle=\color{purple},
+    showstringspaces=false
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%         Para código Python            %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible
+}
+
+% --- Estilo personalizado para los outputs del modelo ---
+\lstdefinestyle{mystyle}{
+    language={},                     % No se usa ningún lenguaje
+    backgroundcolor=\color{black!5}, % Un fondo gris muy claro
+    basicstyle=\ttfamily\small,      % Fuente monoespaciada y pequeña
+    breakatwhitespace=false,
+    breaklines=true,                 % Rompe las líneas largas
+    captionpos=b,                    % Posición del caption (abajo)
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=single,                    % Un marco sencillo alrededor
+    framerule=0.5pt,
+    rulecolor=\color{black!50},
+    keywordstyle=\ttfamily,          % Palabras clave sin color especial
+    stringstyle=\ttfamily,           % Strings sin color especial
+    commentstyle=\ttfamily,          % Comentarios sin color especial
+    literate={'}{{'}}1               % Trata ' como carácter normal
+             {"}{{"}}1               % Trata " como carácter normal
+}

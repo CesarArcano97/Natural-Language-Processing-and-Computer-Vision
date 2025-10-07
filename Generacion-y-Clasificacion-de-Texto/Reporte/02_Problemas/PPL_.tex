@@ -1,0 +1,106 @@
+%\section{Modelos de Lenguaje}
+\phantomsection\addcontentsline{toc}{section}{Modelos de Lenguaje}
+\section*{Modelos de Lenguaje}
+
+Un Modelo de Lenguaje, o LM por sus siglas en inglés, es un sistema probabilístico que asigna
+una probabilidad a una secuencia de palabras, o bien, predice la probabilidad de aparición
+de la siguiente palabra dado un contexto previo. Formalmente, un modelo de lenguaje define
+una distribución sobre secuencias $\omega_1, \omega_2, \ldots, \omega_n$, de la forma:
+
+\[
+    P(w_1, w_2, \ldots, w_n) = \prod_{i=1}^n P(w_i \mid w_1, w_2, \ldots, w_{i-1}),
+\]
+
+Donde cada término $P(\omega_i \mid \omega_{<i})$ representa la probabilidad condicional de
+la palabra $\omega_i$ dado su historia previa $\omega_{<i}$.
+
+Los modleos de lenguaje tienen una larga tradición en el procesmaiento de lenguaje natural. 
+Los primeros enfoques se basaron en modelos de n-gramas, que utilizan la suposición de Markov, i.e.
+la probabilidad de una palabra depndiente únicamente de las últimas $n-1$ palabras de contexto. Por
+ejemplo, un modelo de bigramas:
+
+\[
+    P(\omega_i | \omega_{<i}) \approx P(\omega_i | \omega_{<i})
+\]
+
+Estos modelos, aunque eran sencillos y computacionalmente eficientes, presentaban limitaciones claras
+al no poder capturar depndencias de largo alcance, además de sufrir de "esparsidad", es decir,
+muchas secuencias posibles nunca aparecían en los datos de entrenamiento. Es así como el 
+desarrollo de técnicas de suavizado como Laplace o Kneser-Ney permitieron mejorar el desempeño de
+los LM, pero no se resolvió por completo en cuanto a escasez de datos.
+
+Tras el auge del Deep Learning demostrado en la última década, los modelos de redes neuronales 
+reemplazaron a los modelos de n-gramas, pues estos eran capaces de aprender representaciones
+continuas y modelar depndencias mucho más largas de texto. Al poco tiempo, los Transformers
+cambiaron el paradigma y permitieron ampliar dicha capacidad, aprovechando del mecanismo de
+self-attention para capturar relaciones globales en la secuencia, y a entrenar a muy graned escala
+llegnado a lo que ahora conocemos como Large Language Models o LLM, como lo son GPT, BERT, LLama y 
+todo el abanico de sucesores. 
+
+El propósito central de un LM es estimar la probabilidad de una secuencia de palabras, locual lo convierte 
+en una herramienta súmamente útil para una enorme cantida de tareas. Sin embargo, dado que todo LM 
+asigna distribuciones de probabilidad sobre textom su calidad se mide en qué tan bien predice 
+secuencias reales del idioma. El criterio intrínseco más utilizado para esta tarea de evaluación es
+la perplejidad. 
+
+%\section{Perplejidad}
+\phantomsection\addcontentsline{toc}{section}{Perplejidad}
+\section*{Perplejidad}
+
+La Perplejidad (PPL) es la métrica estándar para evaluar modelos de lenguaje, especialmente
+en tareas de predicción de secuencias. De manera intuitiva, PPL mide qué tan sorprendido
+está un modelo frente a un conjunto de validación, cuanto mejor predice las palabras
+reales que aparecen en el texto, menor será su perplejidad. 
+
+Formalmente, para un conjunto de prueba $W = \omega_1, \omega_2,..., \omega_N$, la perplejidad
+se define como:
+
+\[
+    \text{PPL}(W) = \exp \Big(- \frac{1}{N} \sum_{i=1}^{N} \text{log} p(\omega_i | \omega_{<i})\Big)
+\]
+
+La expresión anterior equivale a:
+
+\[
+    \text{PPL}(W) = \exp \Big(H(p,q) \Big)
+\]
+
+Donde $p(\omega_i | \omega_{<i})$ es la probabilidad asignada por el modelo para la palabra
+$\omega_i$, dado el contexto anterior. 
+
+Esta definición puede interpretarse como la media geométrica inversa de las probabilidades 
+de que el modleo asigna a las palabras correctas. En consecuencia:
+
+\begin{itemize}
+    \item Una PPL baja implica que el modelo asigna alta probabilidad a las palabras reales, por
+    lo que hay una mejor capacidad de predicción.
+    \item Una PPL alta implica que el modelo se sorprende con frecuencia, entonces predice
+    mal el texto.
+\end{itemize}
+
+Así entonces, la perplejidad equivale al número promedio de opciones equiprobables entre las
+que el modelo ``cree'' tener que elegir en cada paso. Por ejemplo, una PPL = 3 significa que
+el modelo se comporta como si en promedio tuviera que escoger entre tres palabras posibles
+en cada posición.
+
+La perplejidad está directamente relacionada con la entropía cruzada de la distribución
+real frente a la estimada por el modleo. Es decir, minimizar la perplejidad equivale a 
+maximizar la probabilidad del conjunto de validación. Por esta razón, se utiliza ampliamente
+para comparar modelos de lenguaje entrenados con distintos algoritmos o configuraciones. 
+
+Es importante destacar que:
+
+\begin{itemize}
+    \item No siempre correlaciona perfectamente con la calidad extrínseca de tareas como traducción automática o generación de texto, donde aspectos de coherencia semántica y adecuación estilística son también relevantes.
+    \item La comparación entre modelos requiere que se use el mismo vocabulario y corpus de prueba; de lo contrario, las cifras no son conmensurables.
+    \item Modelos con perplejidad baja pueden generar texto gramatical pero poco creativo (alta repetición), mientras que temperaturas de muestreo altas pueden producir lo opuesto: diversidad pero con mayor perplejidad.
+\end{itemize}
+
+\subsection{PPL en modelos de Redes Neuronales}
+
+En arquitecturas modernas como RNN, LSTM, GRU o Transformers, el cálculo de la perplejidad se
+implementa de manera directa a partir de la función de \textit{cross-entropy}. dado
+que durante el entrenamiento se minimiza la entropía cruzada entre las etiquetas reales y la
+distribución del modelo, evaluar la perplejidad en el conjunto de validación es equivalente a
+medir el valor exponencial de dicha pérdida. 
+

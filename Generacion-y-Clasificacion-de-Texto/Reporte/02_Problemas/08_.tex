@@ -1,0 +1,187 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Enunciado %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{myblock}
+\phantomsection\addcontentsline{toc}{section}{Parte B | RNN}
+\section*{Parte B | RNN}
+
+    Usando la misma base de la tarea 1, entrena un modelo por cada arquitectura: 
+    CNN, RNN/LSTM/GRU, y un Transformer de Hugging Face con fine-tuning. Reporta
+    accuracy y F1, incluye matriz de confusión y análisis de errores característicos.  
+
+\end{myblock}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Recordemos que, a diferencia de las CNN, que capturan patrones locales posicionalmente invariantes, las RNN
+procesan el texto de manera secuencial, manteniendo un estado oculto que teóricamente puede 
+codificar información de todo el contexto previo. Para tareas de clasificación, este enfoque
+permite modelar dependencias de largo alcance y el orden de las palabras. 
+
+Una mejora realizada para las RNN base son las RNN Bidireccionales, que procesa la secuencia en ambas 
+direcciones, tanto de izquierda a derecha, y de derecha a izquierda. Esto permite que el 
+estado oculto en cualquier punto contenga información tanto del contexto pasado como del 
+futuro, resultando en representaciones más ricas. 
+
+\subsection{Arquitectura RNN}
+
+Para obtener un único vector que representa toda la secuencia, se aplica una operación de pooling
+sobre la secuencia de estados ocultos de la Bi-RNN. Si $H = [h_1, h_2,..., h_L]$ es la
+secuencia de estados ocultos concatenados, donde cada $h_t$ combina el estado hacia adelante y 
+hacia atrás, la representación final $h_{\text{pooled}}$ se obtiene como:
+
+\[
+    h_{\text{pooled}} = \text{Pool}(H)
+\]
+
+El vector resultante $h_{\text{pooled}}$ se pasa a una capa lineal final con una función de 
+activación Softmax para la clasificación. La función de pérdida en este caso es la Entropía 
+Cruzada, podnerada para manejar el desbalance de clases. Recordemos que en generación de texto, 
+la métrica más usada de validación es la Perplejidad (PPL), que no es otra cosa más que la exponencial
+de la Entropía Cruzada. 
+
+\[
+    \hat{y} = \text{Softmax}(W_o \cdot h_{\text{pooled}} + b_o) \;\;\;\;\;\;\;  L = \text{CrossEntropy}(y, \hat{y})
+\]
+
+Los modelos con los que experimentamos partieron de una base con capa de Bi-RNN y MaxPooling. al
+oservar un sobreajuste significativo, con diferencia porcentuial de hasta 30 puntos de F1 entre 
+training y validación, decidimos explorar diversas estrategias de regularización: aumento en 
+el dropout, weight decay, label smoothing y diferentes estrategias de pooling como mean y maxpooling+mean, 
+para intentar encontrar una mejor generalización.
+
+\subsection{Resultados}
+
+El primer modelo superó a la CNN, pero mostró un claro sobreajuste (Train F1 $\approx 0.78$ vs. Val F1 $\approx 0.47$). Los siguientes experimentos buscaron mejorar la regularización y explorar el impacto del mecanismo de \emph{pooling}.
+
+\begin{table}[h!]
+\centering
+\caption{Bi-RNN — Resumen de experimentos en MeIA (polaridad 1–5).}
+\label{tab:rnn_meia_transposed}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Parámetro} & \textbf{\texttt{...\_brnn\_five (baseline)}} & \texttt{...\_mean\_do60} & \texttt{...\_maxmean\_ls002} \\
+\midrule
+\textbf{Pooling}           & \textbf{max}          & mean                & max+mean \\
+\textbf{Proj. Dropout}     & \textbf{0.5}          & 0.6                 & 0.5 \\
+\textbf{Weight Decay}      & \textbf{$1\mathrm{e}{-4}$} & $2\mathrm{e}{-4}$   & $2\mathrm{e}{-4}$ \\
+\textbf{Label Smoothing}   & \textbf{0.0}          & 0.05                & 0.02 \\
+\textbf{Val F1-M}          & \textbf{0.467}        & 0.430               & 0.451 \\
+\textbf{Test Acc / F1-M}   & \textbf{0.492 / 0.484} & 0.462 / 0.444       & 0.464 / 0.440 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Visualización de Modelos}
+
+% --- Figura 1: Matrices de Confusión ---
+\begin{figure}[h!]
+    \centering
+    % Subfigura para el primer experimento (el mejor)
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        % Reemplaza con la ruta de tu imagen
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png} 
+        \caption{\textbf{\texttt{exp\_brnn\_five}}}
+        \label{fig:conf_rnn_exp1}
+    \end{subfigure}
+    \hfill 
+    % Subfigura para el segundo experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        % Reemplaza con la ruta de tu imagen
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png}
+        \caption{\texttt{...\_mean\_do60}}
+        \label{fig:conf_rnn_exp2}
+    \end{subfigure}
+    \hfill
+    % Subfigura para el tercer experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        % Reemplaza con la ruta de tu imagen
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png} 
+        \caption{\texttt{...\_maxmean\_ls002}}
+        \label{fig:conf_rnn_exp3}
+    \end{subfigure}
+    \caption{Matrices de confusión para los tres experimentos de Bi-RNN en el dataset MeIA. El modelo baseline (izquierda) muestra el mejor balance.}
+    \label{fig:confusion_matrices_rnn}
+\end{figure}
+
+% --- Figura 2: Curvas ROC OVR ---
+\begin{figure}[h!]
+    \centering
+    % Subfigura para el primer experimento (el mejor)
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        % Reemplaza con la ruta de tu imagen
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png}
+        \caption{\textbf{\texttt{exp\_brnn\_five}}}
+        \label{fig:roc_rnn_exp1}
+    \end{subfigure}
+    \hfill
+    % Subfigura para el segundo experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        % Reemplaza con la ruta de tu imagen
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png}
+        \caption{\texttt{...\_mean\_do60}}
+        \label{fig:roc_rnn_exp2}
+    \end{subfigure}
+    \hfill
+    % Subfigura para el tercer experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        % Reemplaza con la ruta de tu imagen
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png}
+        \caption{\texttt{...\_maxmean\_ls002}}
+        \label{fig:roc_rnn_exp3}
+    \end{subfigure}
+    \caption{Curvas ROC One-vs-Rest (OVR) para los experimentos de Bi-RNN. Evalúan la capacidad de discriminación de cada clase.}
+    \label{fig:roc_curves_rnn}
+\end{figure}
+
+
+\subsection{Conclusiones}
+
+\begin{itemize}
+    \item La arquitectura Bi-RNN con MaxPooling superó al mejor modelo de mi TextCNN, estableciendo
+    una nueva línea base con un F1-macro de 0.484.
+    \item El mecanismo de pooling resultó ser el factor más determinante, MaxPooling fue superior
+    a MeanPooling y a la concatenación \texttt{max+mean}. Esto nos está indicando que para este problema
+    las señales con alta carga semántica son más informativas que la evidencia contextual distribuida por
+    el texto. 
+    \item Los intentos de regularización más agresiva, como label smoothing, o un mayor weight decay, 
+    fueron contraproducentes. Suavizar las predicciones parece diluir las distinciones sutiles entre las
+    clases intermedias (2-3-4), empeorando el rendimiento general. 
+    \item Al igual que con la CNN, el desafío principal es la zona media de la polaridad, las clases
+    intermedias ya mencionadas. Aunque el modelo captura bien los extremos (1 y 5), la naturaleza ordinal
+    y la ambiguedad semántica de las puntuaciones intermedias son la principal causa de error.
+\end{itemize}
+
+Este modleo basado en una RNN bidireccional demostró ser más efectivo que la convolucional para capturar
+el contexto secuencial de las reseñas. La mejor configuración, una Bi-RNN con MaxPooling sobre los 
+estados ocultos y una regularización moderada obtuvieron los mejores resultados de las pruebas, con un
+accuracy de 0.492, y un F1-Macro de 0.484 en el conjunto de prueba. El análisis de los experimentos
+revelaron que la estrategia de Pooling fue la que más eficientemente abordó el problema, el uso de 
+MaxPooling logra identificar características secuenciales más destacadas, lo cual fue benéfico para
+promediar la evidencia a lo largo de toda la secuencia, que tendía a centralizar las prediciones. 
+
+Pese a las mejoras, este modelo aún comparte el problema de la zona media, con las etiquetas de polaridad
+(2-3-4). La Bi-RNN se establece como una línea base sólida, confirmando que el modelado del 
+orden secuencial puede aportar información de valor, y siendo un excelente punto de partidad para evaluar
+el portencial de arquitecturas basadas en atención como los Transformers. 
+
+
+
+
+
+
+
+
+\clearpage

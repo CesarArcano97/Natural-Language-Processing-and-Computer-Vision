@@ -1,0 +1,83 @@
+\phantomsection\addcontentsline{toc}{section}{Tranformers para clasificación de textos}
+\section*{Tranformers para clasificación de textos}
+
+Ya hemos hablado acerca de que la arquitectura Transformer representó una ruptura fundamental con
+los modelos recurrentes y convolucionales tradicionales dentro del Deep Learning. Eliminar la 
+dependencia explícita de la secuencialidad y cambiarla por un mecanismo llamado ``auto-atención'' que
+permite procesar todos los tokens en paralelo, vovlió a esta arquitectura en toda una revolución dentro
+del NLP, y el DL en general. 
+
+En lugar de propagar los estados ocultos de manera recurrente como en las RNN o los LSTM/GRU, el 
+Transformer calcula relaciones directas entre todas las posiciones de una secuencia mediante pesos 
+de atención que cuantifican la relevancia contextual de cada token respecto a los demás. Matemáticamente, 
+estos trabajan con tres proyecciones que ya mencionamos en la sección pasada de Transformers, pero
+para el caso generativo, las matrices de consulta $Q$, clave $K$ y valor $V$:
+
+\[
+    Q = XW_Q. \;\;\;\;\;\;\; K = XW_K, \;\;\;\;\;\;\; V = XW_V
+\]
+
+donde $W_Q, W_K, W_V \in \mathbb{R}^{d \times d}$, son matrices de parámetros. La atención para cada
+token $i$ se calcula como una combinación ponderada de los valores $V$, donde los pesos derivan de
+una similitud escalar entre las consultas y las claves:
+
+\[
+    \text{Attention}(Q,K,V) = \text{Softmax} \Big(\frac{QK^T}{\sqrt{d_k}}\Big) V
+\]
+
+Este cálculo define la contribución de cada token al contexto del token actual en la secuencia. Al 
+combinar varias cabezas de atención, el modelo puede capturar simultáneamente distintos tipos de relaciones
+tanto semánticas como sintácticas. 
+
+\subsection{Clasificación de texto con Transformers}
+
+En tareas de clasificación, como lo es análisis de sentimineto, categorización temática o detección
+de polaridad, el Transformer se usa como codificador contextual. Cada token produce un embedding contextualizado
+$h_i$, y un vector de resumen de la secuencia se pasa a una capa densa para estimar la probabilidad 
+de la clase:
+
+\[
+    \hat{y} = \text{Softmax} \big(W_c h_{\text{[CLS]} + b_c}\big)
+\]
+
+La función de pérdida por excelencia es la entropía cruzada entre la distribución predicha $\hat{y}$ 
+y la verdadera $y$:
+
+\[
+    \mathbb{L}_{CE} = - \sum_{k=1}^{K} y_k \text{log} \hat{y}_k
+\]
+
+Durante el fine-tuning, las capas del transformer se pueden actualizar de manera parcial o total, acorde
+al tamaño del corpus y los recursos disponibles. En la práctica, modelos como BETO, BERT-base o DistilBERT 
+logran estados del arte en clasificación textual, esto gracias a aus capacidad de capturar relaciones semánticas
+a largo plazo sin recurrencia explícita. 
+
+\subsection{Contraste con el enfoque generativo}
+
+La distinción entre el uso generativo y discriminativo de los Transformers radica, principalmente,
+en el objetivo del enternamiento y el flujo de la información. Podemos ver esto en la siguiente tabla:
+
+\begin{table}[h!]
+    \centering
+    \caption{Comparación entre modelos de lenguaje generativos y discriminativos.}
+    \label{tab:model_comparison}
+        \begin{tabular}{lll}
+        \toprule
+        \textbf{Aspecto} & \textbf{Generativo (GPT, LLaMA)}        & \textbf{Discriminativo (BERT, BETO)}             \\ \midrule
+        Tipo de atención & Causal (unidireccional)                 & Bidireccional                                    \\
+        Objetivo         & Predicción del siguiente token          & Predicción de tokens    \\
+        Salida           & Texto continuo                          & Etiqueta de clase                                \\
+        Métrica típica   & Perplejidad (PPL)                       & Accuracy, F1-score                               \\
+        Uso típico       & Generación de texto, diálogo            & Clasificación, análisis de sentimientos          \\ \bottomrule
+        \end{tabular}
+\end{table}
+
+En la práctica, ambos modelos comparten la misma base estructural, bloques de atención, normalización
+y proyecciones lineales, pero difieren en cómo restringen el acceso al contexto y en el tipo de 
+tarea supervisada que se les plantea. Mientras que los modelos generativos como GPT o LLaMA se entrenan 
+para predecir la próxima palabra en la secuencia, los modelos tipo BERT/BETO internalizan el contexto 
+completo para producir embeddings discriminativos que pueden ser reutilizados para tareas de fine-tuning 
+eficinete. Este cambio de paradigma logró unificar, en una misma arquitectura, el aprendizaje de representaciones 
+linguisticas, siendo así el estado del arte actual y con lo que habrían soñado los fundadores de esta
+ciencia. 
+

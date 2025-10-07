@@ -1,0 +1,14 @@
+{
+  "level": "word",
+  "vocab_size": 3613,
+  "seq_len": 32,
+  "stride": 1,
+  "train_split": 0.8,
+  "num_examples": 32019,
+  "num_tokens_total": 32051,
+  "keep_song_delims": true,
+  "lowercase": true,
+  "min_freq": 1,
+  "use_spacy": false,
+  "spacy_model": "en_core_web_sm"
+}

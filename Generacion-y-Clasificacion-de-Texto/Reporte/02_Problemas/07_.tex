@@ -1,0 +1,162 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Enunciado %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{myblock}
+\phantomsection\addcontentsline{toc}{section}{Parte B | CNN}
+\section*{Parte B | CNN}
+
+    Usando la misma base de la tarea 1, entrena un modelo por cada arquitectura: 
+    CNN, RNN/LSTM/GRU, y un Transformer de Hugging Face con fine-tuning. Reporta
+    accuracy y F1, incluye matriz de confusión y análisis de errores característicos.  
+
+\end{myblock}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Las CNN para texto modelan \emph{n-gramas} como “filtros” que barren la secuencia de 
+embeddings y extraen \emph{features} locales robustas (p. ej., negación corta, 
+intensificadores). El \emph{max-over-time pooling} resume la activación más representativa 
+por filtro, favoreciendo patrones discriminativos (\textit{salient n-grams}).
+
+\subsection{Arquitectura CNN}
+
+Sea $X \in \mathbb{R}^{L \times d}$ la matriz de embeddings (longitud $L$, dimensión $d$). Para un kernel 1-D de tamaño $k$:
+\[
+c_i = \sigma\!\big(\langle W,\, X_{i:i+k-1} \rangle + b\big), \quad
+\mathbf{c} = [c_1,\dots,c_{L-k+1}], \quad
+\hat{c} = \max(\mathbf{c})
+\]
+donde $W \in \mathbb{R}^{k \times d}$ y $\sigma$ es ReLU. Con varios tamaños de kernel $k \in \{2,3,4,5\}$ y $F$ filtros por tamaño, concatenamos 
+$\hat{\mathbf{c}} = [\hat{c}^{(k_1)}, \ldots, \hat{c}^{(k_m)}]$ y proyectamos a $K$ clases:
+\[
+\hat{\mathbf{y}}=\mathrm{Softmax}\!\big(W_o \,[\hat{\mathbf{c}}] + b_o\big),\qquad
+\mathcal{L} = \mathrm{CE}(\mathbf{y}, \hat{\mathbf{y}})
+\]
+
+Los kernels capturan patrones locales ($k{=}3$–$5$ suele alinear bien con bi/tri-gramas semánticos). El \emph{global max-pool} selecciona la evidencia más fuerte por filtro, 
+haciéndolo robusto a la posición. Con reseñas 1–5, las frases muy positivas/negativas emergen como activaciones altas; las clases intermedias (2–3–4) requieren matices y suelen 
+confundirse si la capacidad o el regularizador no están calibrados.
+
+La arquitectura que realizamos fue TextCNN: embeddings 256, kernels $\{2,3,4,5\}$ o $\{3,4,5\}$, $F\in\{64,128\}$ filtros, \emph{dropout} (0.5–0.6), AdamW (LR $1\mathrm{e}{-3}$ o $2\mathrm{e}{-3}$), \emph{batch} 64, 20 épocas, 
+\emph{early stopping} por F1-macro en validación. El \texttt{train\_cnn.py} guarda curvas de loss/F1, matriz de confusión y ROC OvR en el mejor punto, y usa 
+class\_weights desde \texttt{meta.json}. :contentReference[oaicite:1]{index=1}
+
+\subsection{Resultados}
+\begin{table}[h!]
+\centering
+\caption{TextCNN — Resumen de experimentos en MeIA (polaridad 1–5).}
+\label{tab:cnn_meia_transposed}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Parámetro} & \texttt{...\_f128\_do60} & \texttt{...\_f64\_k345\_do50} & \textbf{\texttt{...\_k345\_f128\_lr1e-3}} \\
+\midrule
+\textbf{Kernels}          & 2,3,4,5         & 3,4,5               & \textbf{3,4,5} \\
+\textbf{Filtros}          & 128             & 64                  & \textbf{128} \\
+\textbf{LR}               & $2\mathrm{e}{-3}$ & $2\mathrm{e}{-3}$   & \textbf{$1\mathrm{e}{-3}$} \\
+\textbf{Dropout}          & 0.6             & 0.5                 & \textbf{0.5} \\
+\textbf{Val F1-M}         & 0.414           & 0.425               & \textbf{0.456} \\
+\textbf{Test Acc / F1-M}  & 0.374 / 0.357   & 0.410 / 0.379       & \textbf{0.448 / 0.441} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Visualización de Modelos}
+
+% --- Figura 1: Matrices de Confusión ---
+\begin{figure}[h!]
+    \centering
+    % Subfigura para el primer experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png} % Reemplaza con la ruta de tu imagen
+        \caption{\texttt{exp\_textcnn\_f128\_do60}}
+        \label{fig:conf_exp1}
+    \end{subfigure}
+    \hfill % Para distribuir el espacio entre las subfiguras
+    % Subfigura para el segundo experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png} % Reemplaza con la ruta de tu imagen
+        \caption{\protect\texttt{exp\_textcnn\_f64\_k345\_do50}}
+        \label{fig:conf_exp2}
+    \end{subfigure}
+    \hfill
+    % Subfigura para el tercer experimento (el mejor)
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png} % Reemplaza con la ruta de tu imagen
+        \caption{\textbf{\texttt{exp\_textcnn\_k345\_f128\_lr1e-3}}}
+        \label{fig:conf_exp3}
+    \end{subfigure}
+    \caption{Matrices de confusión para los tres experimentos de TextCNN en el dataset MeIA. Muestran la clasificación de polaridad (1-5).}
+    \label{fig:confusion_matrices}
+\end{figure}
+
+\clearpage % Opcional: fuerza que la siguiente figura comience en una nueva página si el espacio es limitado
+
+% --- Figura 2: Curvas ROC OVR ---
+\begin{figure}[h!]
+    \centering
+    % Subfigura para el primer experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png} % Reemplaza con la ruta de tu imagen
+        \caption{\texttt{exp\_textcnn\_f128\_do60}}
+        \label{fig:roc_exp1}
+    \end{subfigure}
+    \hfill
+    % Subfigura para el segundo experimento
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png} % Reemplaza con la ruta de tu imagen
+        \caption{\protect\texttt{exp\_textcnn\_f64\_k345\_do50}}
+        \label{fig:roc_exp2}
+    \end{subfigure}
+    \hfill
+    % Subfigura para el tercer experimento (el mejor)
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png} % Reemplaza con la ruta de tu imagen
+        \caption{\textbf{\texttt{exp\_textcnn\_k345\_f128\_lr1e-3}}}
+        \label{fig:roc_exp3}
+    \end{subfigure}
+    \caption{Curvas ROC One-vs-Rest (OVR) para los tres experimentos de TextCNN. Se evalúa la capacidad de discriminación entre cada clase de polaridad y el resto.}
+    \label{fig:roc_curves}
+\end{figure}
+
+
+\subsection{Conclusiones}
+
+\begin{itemize}
+    \item Centrar los kernels en tamaños de 3 a 5 mejora el rendimiento en comparación con usar un rango más amplio (2 a 5), ya que captura patrones semánticos más “limpios”.
+    \item Reducir el Learning Rate a $1\mathrm{e}{-3}$ estabilizó el entrenamiento en el conjunto de validación y produjo el mejor modelo generalizado (F1-macro en test $=0.441$).
+    \item Un valor de Dropout de 0.6 fue excesivo, ya que “acható” las distribuciones de probabilidad y degradó la métrica F1.
+    \item Lamatriz de confusión muestra que los errores se concentran principalmente entre las clases adyacentes \emph{2–3–4} (la frontera ordinal), mientras que las clases extremas (1 y 5) mantienen un buen \emph{recall}.
+    \item \emph{Nota:} Las gráficas de Confusión y ROC OvR se generaron automáticamente al guardar el mejor checkpoint del modelo.
+\end{itemize}
+
+El modelo basado en Convolutional Neural Networks (TextCNN) demostró un desempeño 
+sólido como línea base para la clasificación de polaridad en reseñas turísticas. La mejor 
+configuración —con kernels centrados en 3, 4 y 5 palabras, 128 filtros por tamaño, tasa de 
+aprendizaje de $1\times10^{-3}$ y dropout de 0.5— alcanzó una precisión de 0.448 y un 
+F1-macro de 0.441 en el conjunto de prueba, superando a las configuraciones previas con 
+tasas de aprendizaje más altas o regularización excesiva. Se observó que el modelo captura
+con efectividad las señales extremas de polaridad, es decir, las reseñas claramente 
+positivas o negativas (clases 1 y 5), mientras que mantiene dificultades para distinguir
+los matices intermedios (clases 2, 3 y 4), un fenómeno atribuible a la naturaleza ordinal
+del problema y a la limitación inherente del pooling global en representar relaciones 
+semánticas sutiles. Pese a ello, la TextCNN logra aprender representaciones 
+discriminativas estables y generaliza adecuadamente al conjunto de validación, 
+evidenciando que la optimización y la calibración del dropout son factores más 
+determinantes que el aumento de filtros o la complejidad estructural. En síntesis, 
+el modelo se consolida como un punto de partida robusto sobre el cual arquitecturas 
+recurrentes o transformacionales podrán construir representaciones de contexto más
+finas en etapas posteriores del análisis.
+
+\clearpage

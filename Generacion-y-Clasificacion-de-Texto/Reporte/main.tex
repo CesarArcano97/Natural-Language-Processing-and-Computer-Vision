@@ -1,0 +1,86 @@
+\documentclass[12pt,letterpaper]{extarticle}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{lettrine}
+\usepackage[table,dvipsnames]{xcolor}  % Combined xcolor options
+\usepackage{hyperref}
+\usepackage{booktabs}
+% minted requires --shell-escape flag
+% \usepackage{minted} % Commented out for now - requires pygmentize
+\usepackage{siunitx}
+\sisetup{detect-weight=true, detect-family=true, input-decimal-markers=., group-separator={,}, group-minimum-digits=4}
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+\usepackage{caption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%          Se incluye el preámbulo       %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Preambulo}
+
+% Note: cleveref must be loaded after amsmath (loaded in Preambulo)
+\usepackage{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%          Datos de Encabezado           LaTeX Workshop is incompatible with  "vscode-pdf". We compete when opening a PDF file from the sidebar. Please consider disabling either extension.LaTeX Workshop is incompatible with  "vscode-pdf". We compete when opening a PDF file from the sidebar. Please consider disabling either extension.LaTeX Workshop is incompatible with  "vscode-pdf". We compete when opening a PDF file from the sidebar. Please consider disabling either extension.LaTeX Workshop is incompatible with  "vscode-pdf". We compete when opening a PDF file from the sidebar. Please consider disabling either extension.LaTeX Workshop is incompatible with  "vscode-pdf". We compete when opening a PDF file from the sidebar. Please consider disabling either extension.%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{Tarea \#2}
+\rhead{Procesamiento de Lenguaje Natural \& Visión Computacional}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%      Configuración de los bloques      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- Numeración ---
+\renewcommand{\thesection}{\arabic{section}}
+\setcounter{secnumdepth}{1}   % Solo numera hasta \section
+\setcounter{tocdepth}{3}      % Aún se listan en el TOC      
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Configuración de Tabla de Contenidos  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rfoot{\hyperlink{MyToc}{\footnotesize{Tabla de contenidos}}}
+\addto\captionsspanish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Tabla de contenidos}%
+}
+
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%           Se incluye la portada        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newgeometry{top=30mm, bottom=20mm, right=35mm, left=30mm}
+\input{01_Portada/00_Portada}
+\restoregeometry%
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%        Tabla de Contenidos             %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{MyToc}{}
+\tableofcontents
+\addtocontents{toc}{~\hfill\textbf{Página}\par}
+
+%%%%%%%%%%%%%%%%%%%%%
+%% Problemas      %%%
+%%%%%%%%%%%%%%%%%%%%%
+\input{02_Problemas/PPL_}
+\input{02_Problemas/01__}
+\input{02_Problemas/02__}
+\input{02_Problemas/03__}
+\input{02_Problemas/04__}
+\input{02_Problemas/Transformers_}
+\input{02_Problemas/05__}
+\input{02_Problemas/06_}
+\input{02_Problemas/07_}
+\input{02_Problemas/08_}
+\input{02_Problemas/09_}
+\input{02_Problemas/10_}
+\input{02_Problemas/Transformers_class__.tex}
+%\input{02_Problemas/11_}
+
+\end{document}

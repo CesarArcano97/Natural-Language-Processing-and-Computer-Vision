@@ -1,0 +1,231 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Enunciado %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{myblock}
+\phantomsection\addcontentsline{toc}{section}{Parte A | Mistral-7B LoRA}
+\section*{Parte A | Mistral-7B LoRA}
+
+    Afinar al menos un modelo Transformer en cada parte (generación y clasificación), eligiéndolo
+    de Hugging Face. 
+
+\end{myblock}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Mistral-7B LoRA}
+
+Al ser este el modelo con mejores resultados, creí adecuado colocar un apartado más tecnico respecto
+a este transformer. 
+
+Mistral mantiene la arquitectura Transformer Decoder estándar, basada en \textit{Self-Attention}
+y \textit{Feed-Forward Networks}, pero introduce modificaciones que reducen complejidad y aumentan
+la eficiencia sin pérdida de capa expresiva. 
+
+Recordemos que cada bloque de atención se define como:
+
+\[
+    \text{Attention}(Q,K,V) = \text{Softmax} \Big(\frac{QK^T}{\sqrt{d_k}+M}\Big) V
+\]
+
+Donde $M$ es la máscara causal que impide que el modelo ``mire a futuro''. Sin embargo, mistral 
+modifica el mecanismo con dos adiciones:
+
+\begin{itemize}
+    \item \textbf{Sliding Window Attention (SWA)}: en lugar de atender a todos los tokens 
+    previos, cada token solo atiende a los últimos $W$ tokens. Por defecto esto es $W = 4096$.
+    Esto reduce la complejidad de $O(n^2)$ a $O(nW)$, permitiendo manejar contextos extensos
+    con menor saturación de memoria. 
+    \item \textbf{Grouped-Query Attention (GQA)}: esto reduce el número de cabezas de clave. En lugar
+    de una proyección $(Q,K,V)$ por cabeza, agrupa varias cabezas de query y $h_{kv}$ las de 
+    key; entonces $h_q < h_{kv}$. Esto reduce la memoria y el tiempo de inferencia sin sacrificar 
+    la expresividad
+\end{itemize}
+
+Además, cada bloque Transformer incluye una red feed-forward con activación SiLU (Swish):
+
+\[
+    \text{FFN}(x) = W_2 \text{SiLU}(W_1x + b_1) + b_2
+\]
+
+Con dimension expansion factor de 4× el tamaño del embedding (similar a LLaMA). La función 
+de activación SiLU (Sigmoid Linear Unit), conocdia también como Swish, es útil para Mistral poprque
+combina lo mejor de ReLU con la Sigmoide, dando resultado a un entrenamineto más estable y un mejor 
+rendimiento general del modelo. Esta se define matemáticamente como:
+
+\[
+    \text{SiLU}(x) = x \cdot \sigma(x) = x \cdot \frac{1}{1 + e^{-x}}
+\]
+
+A diferencia de ReLU, que tiene una esquina afilada con $x=0$, SiLU es una curva suave y continua. 
+Esta suavidad le permite al proceso de optimización ser más estable durante el entrenamiento. De igual
+forma se evitan cambios bruscos en los gradientes, permitiendo que el modelo converja de manera
+más eficiente. Además, para valores negativos pequeños, la función decrece antes de volver a cero.
+
+Asimismo, Mistral-7B LoRA cuenta con un entrenamiento previo sobre 7.3B de parámetros, y 32 
+cabezas de atención. Como optimizador utiliza AdamW + cosine decay.  
+
+Ahora bien, hablando de LoRA (Low-Rank Adaptation), este mecanismo permiote ajustar solo una 
+pequeña parte de los parámetros del modelo sin modificar los pesos originales. La idea es que
+se descomponga una actualización de $\delta W$ en cada matriz de pesos, transformandose en 
+dos matrices de rango bajo:
+
+\[
+    W' = W + \delta W = W + BA \;\;\;\;\;\;\; A \in \mathbb{R}^{r \times d}, \; B \in \mathbb{R}^{d \times r}
+\]
+
+Donde el rango $r$ es pequeño, para nuestro caso específico fue $r = 16$, lo que implica entrenar
+menos del 1\% de los parámetros totales. Esto reduce drásticamente el consumo de VRAM y permite ejecutar 
+el fine-tuning completo en una sola GPU Titan RTX de 24 GB, que es lo que teníamos disponible
+en el servidor de CIMAT Lab.
+
+\clearpage
+
+\subsection{Resultados}
+
+\begin{lstlisting}[
+    style=mystyle,
+    caption={Output crudo del modelo Mistral-7B LoRA a nivel de palabra.},
+    label={lst:output-mistral-word}
+]
+In the city lights I find myself
+I don't know why
+I wanna stay inside tonight
+I think it's right
+But my heart keeps telling me that I should go
+Someplace I know where I belong
+So, I take a deep breath, step outside
+And follow my heart to where I want to hide
+
+In the shadows of my memories
+There's things I can't forget
+The times when you and I used to be
+Together we had what we wanted yet
+A sparkle in our eyes would leave us
+To chase dreams that only took us far from here
+Now, all those years seem like a blur
+And time has passed by, no trace left behind
+Like footprints in the sand
+My past steps slowly wash away
+I see them sinking with the tide
+Leaving me with a future I might not know
+
+If you could read my mind
+What would you think of who I am?
+Have I changed since then?
+Did your love bring out the best or the worst in me?
+Do you remember how I felt?
+\end{lstlisting}
+\clearpage
+
+\begin{lstlisting}[
+    style=mystyle,
+    caption={Output crudo del modelo Mistral-7B LoRA a nivel de palabra.},
+    label={lst:output-mistral-word}
+]
+They say I'm broken but I'm breathing,
+I say I'll heal but don't know what I mean
+You see they say the heart never forgets,
+The pain that you feel just gets passed down to me
+And now it's like a game of catch,
+Every time I move, the feeling gets passed along
+
+Now we all talk about love and compassion,
+But how can we show it when there's nothing left?
+When every day feels more desperate than the last,
+It's easy to believe what they say
+
+They say, "Jena, there's something wrong with you,
+Don't you get it yet? You're already gone,"
+So I go looking for answers,
+Looking for a cure, anything to be strong
+
+"Jena, you're too broken, you won't get well,"
+They say, "Your mind is lost and there's no way back"
+
+Am I too far gone? Did I miss my chance?
+Do you think maybe there's hope left?
+\end{lstlisting}
+
+\clearpage
+
+
+\begin{lstlisting}[
+    style=mystyle,
+    caption={Output crudo del modelo Mistral-7B LoRA a nivel de palabra.},
+    label={lst:output-mistral-word}
+]
+Sometimes my shadow sings louder than I do
+A symphony of noise so loud it rings and echoes in the dark of night
+It shines with light in its heart, and a deep soulful wisdom
+The shadow was a creature of its own right
+Sometimes we are just shadows of ourselves
+Drowning in our own light as the real us watches on in the background
+Someone else.
+Some days I wake up and forget that I am me
+And everything is a haze and then suddenly you're there
+You bring back clarity
+
+My best friend once told me that every person needs their best friend to see them for who they truly are
+Every day I watch you and you help me to remember myself
+When I look at your face I know the depths of your heart
+Your eyes can tell stories and I love how you make me feel
+I watch as you go about life, painting a masterpiece
+One stroke at a time, coloring outside the lines, sometimes straying completely off course
+But you never give up
+And when I watch you, I feel like anything
+\end{lstlisting}
+
+\subsection{Conclusiones}
+
+El modelo Mistral-7B LoRA mostró un gran desempeño y marcada mejora en la coherencia frente a las
+arquitecturas tradicionales recurrentes y el resultado de TinyLLaMA. La pérdida promedio final 
+fue de 1.59, lo que se traduce en una perplejidad de entrenamiento de 4.93, mientras que la PPL
+de validación se estimó entorno a 5.7. Estras cifras reflejas una genración estable, con poco
+sobreajuste, pese a realizarse solo en tres épocas, y el tamaño reducido del corpus. 
+
+A nivel cualitativo, las letras generadas demustran una notable consistencia en cuanto a temática
+y carga emocional. El texto del promt ``\textit{In the city lights I find myself}'' se muestra como una
+canción con buena estructura lírica y estrofras, cerrando con un tono introspectivo ``\textit{Did your love bring out the best or the worst in me?
+Do you remember how I felt?}''.  
+
+La segunda canción,``\textit{They say I’m broken but I’m breathing}'' articula un discurso casi como 
+de confesión, creo yo, imitando canciones como Cottonwood, Addict With A Pen o Fake You Out de 
+Twenty One Pilots.  Finalmente,``\textit{Sometimes my shadow sings louder than I do}'' destaca por su
+tono po´etico y met´aforas visuales, lo que sugiere que Mistral aprendi´o patrones 
+estil´ısticos y tem´aticos complejos. Me parece que esto se ve impulsado por un buen promt, que
+comparta el estilo y visión de la banda.
+
+En comparación con TinyLLaMA-1.1B, Mistral produce versos más largos y mantiene una coherencia 
+global más estable, aunque con una ligera pérdida de espontaneidad léxica. Creo que su ventana
+de atención amplia y el uso eficiente de LoRA permitieron modelar dependencias de largo alcance
+sin degradar la fluidez. 
+
+Algo que pienso es que, aunque entrenamos con aproximadamente el 1\% de los parámetros con LoRa, el resto del
+modelo, i.e. los 7 mil millones de parámetros de Mistral base, siguen determinando el comportamineto
+de la distribución linguistica general de los outputs. Es decir, LoRA no borra el conocimiento previo
+más bien lo modula a través de modificar un poco las matrices. Creo que por eso, sus salidas, aunque 
+muy buenas e interesantes, no logran capturar por completo los clichés o estructuras más específicas
+de Twenty One Pilots. Es decir, al final sigue siendo un LLM generalista, que ajusta los sesgos
+de atención hacia patrones especídifcos. 
+
+En consecuencia, Mistral se adapta y se combierte en un híbrido de estilo global por su entrenamiento
+original y el estilo específico de mi corpus. Recordemos que por descomposición de LoRA: $W' = W + BA$.
+Donde $B$ y $A$ son matrices de bajo rango (entrenables con menos del 1\% de los params.). Entonces, $W$
+cofica todo el conocimiento general del modelo (con la gramática, semántica y razonamiento previo), y 
+$BA$ es un filtro que ajusta a los tokens y define los patrones del modelo sobre los que se dará prioridad.
+
+Se intenta reorientar lo aprendido. LoRA ``dobla'' el espacio de atencion, pero el punto de partida 
+sigue siendo el embedding universal de Mistral. Esto, creo, explica por qué el modelo mantiene coherencia 
+global y gramatical excelente, pero no siempre puede reproducir con fidelidad total el perfil 
+artístico de Twenty One Pilots. Supongo que podríamos hacer más ajustes al finetuning para 
+acercarnos cada vez más al estilo de Twenty One Pilots, pero eso se queda como trabajo futuro.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage

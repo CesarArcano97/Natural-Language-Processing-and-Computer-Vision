@@ -1,0 +1,162 @@
+\phantomsection\addcontentsline{toc}{section}{Introducción a los Transformers y su relación 
+con los LLM}
+\section*{Introducción a los Transformers y su relación 
+con los LLM}
+
+Los modleos de lenguaje han recorrido un largo camino desde los enfoques estadísticos basados
+en conteos de n-gramas hasta convertirse en los actuales modelos de lenguaje a gran escala, 
+también conocidos como LLMs por sus siglas en inglés. En ese sentido, la arquitectura
+Transformer (Vaswani et al., 2017) ha sido el principal punto de partida, con el cual se revolucionó la manera en
+que presentamos y procesmaos secuencias linguísticas. 
+
+A diferencia de los modelos recurrentes, como las RNN, LSTM o GRU, que procesan el texto paso 
+a paso, y que sufrían de limitaciones para capturar dependencias largas, los Transformers 
+incorporaron un mecanismo esencial para su éxito: la auto-atención (o \textit{Self-Attention}).
+Este mecabnismo permite que cada palabra o token en una secuencia "se fije" de manera
+directa en cualquier otro, sin importar la distancia que los separe, construyendo representaciones
+contextuales mucho más ricas y globales. 
+
+Este avance fue toda una revolución para el Procesamiento de Lenguaje Natural, pues creó 
+modelos que podían manejar contextos extensos y aprender patrones complejos de manera eficiente. 
+Como resultado, los Transformers se convirtieron muy rápidamente en la arquitectura dominante
+en prácticamente todas las tareas del NLP, desde la traducción automática, hasta la generación 
+de texto. 
+
+Los LLMs contemporáneos como GPT, LLaMA, Gemini o DeepSeek no son más que instancias a gran
+escala de esta arquitectura. Es decir, lo que se ha hecho es tomar la arquitectura y volverla
+gigantesca, de tal modo que ahora tenemos modelos sumamente eficaces. La característrica de
+\textit{Large} de los LLMs se refiere tanto a su número de parámetros como a la magnitud
+del corpus con el que fue entrenado. Este diseño, que no necesita de convoluciones ni de 
+recurrencia, representa un cambio de paradigma en la modelación del lenguaje. Se trata 
+de una arquitectura altamente paralelizable y que puede capturar dependencias globales en el
+texto de manera directa. 
+
+\subsection{El cambio de paradigma}
+
+El Transformer (Vaswani et al., 2017), es una arquitectura de red neuronal diseñada originalmente
+para tareas de traducción automática, pero que pronto se convirtió en el estándar para el NLP, 
+encontrando aplicaciones en muchos campos. 
+
+A diferencia de los modelos recurrentes, que procesan de manera secuencial el texto, el Transformer
+elimina la recurrencia y se basa en bloques paralelos compuestos de:
+
+\begin{itemize}
+    \item Mecanismo de self-atention o multi-head attention.
+    \item Redes feed-forward posicionales.
+    \item Normalización por capas y conexiones residuales.
+\end{itemize}
+
+En general, un Transformer puede adaptar tres variantes arquitectónicas principales:
+
+\begin{itemize}
+    \item \textbf{Decoder-only}: utilizado en modelos generativos como GPT, LLaMA o Mistral.
+    \item \textbf{Encoder-only}: especializado en clasificación y comprensión como BERT, BETO o RoBERTa. 
+    \item \textbf{Encoder-decoder}: comúnmente utilizados para traducción y tareas secuencia a secuencia.
+\end{itemize}
+
+Una de sus grandes ventajas es que pueden procesar contexto completo en paralelo, y aprender
+dependencias de largo alcance en un solo paso, como no podrían los modelos recurrentes. 
+
+\subsection{\textit{Self-Attention}}
+
+Dado un conjunto de representaciones entrada $(x_1, x_2, \dots, x_n) \in \mathbb{R}^d$, una por 
+cada token, la auto-atención produce nuevas representaciones $a_1, a_2, \dots, a_n$ donde cada
+$a_i$ es una combinación ponderada de todos los vectores $x_j$ donde $j < n$.
+
+La idea es que un token puede consultar información de otros tokens en función de su similitud
+semántica y contextual.
+
+Se definen tres proyecciones aprendidas de cada vector de entrada:
+
+\[
+    q_i = x_i W^Q, \;\;\;\;\;\;\; k_i = x_i W^K, \;\;\;\;\;\;\; v_i = x_i W^V
+\]
+
+Donde $W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k}$ son matrices de parámetros.
+
+La similaridad entre token $i$ (consulta) y otro token $j$ (clave) se calcula mediante un producto
+punto escalado:
+
+\[
+    \text{score}(i,j) = \frac{q_i \cdot k_j}{\sqrt{d_k}}
+\]
+
+El uso del factor $\sqrt{d_k}$ estabiliza los gradientes y evita valores extremos al aplicar
+la exponenciación en el softmax. Estas puntuaciones se normalizan con una Softmax, obteniendo
+los pesos de atención:
+
+\[
+    \alpha_{ij} = \frac{\exp \Big(\text{score}(i,j)\Big)}{\sum_{m=1}^{n} \exp \Big(\text{score}(i,m)\Big)}
+\]
+
+Finalmente, la represebtación contextual del token $i$ se obtiene como una suma ponderada
+de los valores:
+
+\[
+    \alpha_i = \sum_{j=1}^{n} \alpha_{ij} v_j
+\]
+
+Este mecanismo se aplica en paralelo para todos los tokens de la secuencia, generando la matriz
+de salidas $A \in \mathbb{R}^{n \times d_v}$.
+
+\subsection{\textit{Multi-head Attention}}
+
+En la pr\'actica, no se utiliza una sola cabeza de atenci\'on, sino m\'ultiples. Con $h$ cabezas, se calculan diferentes subespacios de atenci\'on:
+
+$$\text{head}_h = \text{Attention}(XW^Q_h, XW^K_h, XW^V_h)$$
+
+y luego se concatenan todas las salidas para formar la representaci\'on final:
+
+$$\text{MHA}(X) = [\text{head}_1; \dots; \text{head}_h] W^O$$
+
+donde $W^O$ es una matriz de proyecci\'on adicional.
+
+\subsection{Transformers populares}
+
+La introducci\'on de la arquitectura Transformer no s\'olo transform\'o la investigaci\'on en PLN, sino que tambi\'en dio origen a una serie de modelos que hoy son considerados referentes en la evoluci\'on de los modelos de lenguaje a gran escala (\textbf{LLMs}). Entre ellos destacan las familias \textbf{GPT}, \textbf{LLaMA} y m\'as recientemente \textbf{DeepSeek}, cada una con enfoques y motivaciones distintas.
+
+\subsubsection{GPT (Generative Pretrained Transformer)}
+
+Los modelos GPT, desarrollados por OpenAI, constituyen el ejemplo paradigm\'atico de los Transformers decoder-only. Su entrenamiento se basa en la tarea de \textit{next-word prediction}, es decir, la predicci\'on autoregresiva de la siguiente palabra dada una secuencia de entrada.
+
+\begin{itemize}
+    \item \textbf{GPT-1 (2018)} introdujo la idea de preentrenar un gran modelo en corpus generales y luego ajustarlo (\textit{fine-tuning}) para tareas espec\'ificas.
+    \item \textbf{GPT-2 (2019)} escal\'o el tama\~no (1.5B par\'ametros) y mostr\'o por primera vez capacidades generativas sorprendentes, aunque inicialmente fue liberado de forma parcial por preocupaciones de seguridad.
+    \item \textbf{GPT-3 (2020)}, con 175B par\'ametros, consolid\'o el paradigma de los LLMs al mostrar \textit{emergent abilities}: razonamiento b\'asico, traducci\'on, generaci\'on de c\'odigo y di\'alogo. Su ajuste posterior dio origen a ChatGPT, que incorpor\'o \textit{instruction tuning} y \textit{reinforcement learning from human feedback} (RLHF) para mejorar su alineaci\'on con usuarios.
+\end{itemize}
+
+El impacto de GPT fue doble: estableci\'o la viabilidad de los LLMs en m\'ultiples dominios y mostr\'o que un \'unico modelo, entrenado con suficiente escala, puede generalizar a una amplia variedad de tareas ling\"u\'isticas sin redise\~nar la arquitectura.
+
+\subsubsection{LLaMA (Large Language Model Meta AI)}
+
+En 2023, Meta present\'o la familia LLaMA, concebida como un esfuerzo por abrir a la comunidad modelos competitivos pero con un enfoque en eficiencia y accesibilidad.
+
+\begin{itemize}
+    \item \textbf{LLaMA-1} ofrec\'ia variantes de 7B a 65B par\'ametros entrenadas con datos cuidadosamente filtrados.
+    \item \textbf{LLaMA-2 (2023)} introdujo mejoras en el preentrenamiento y versiones afinadas para di\'alogo.
+    \item \textbf{LLaMA-3 (2024)} alcanz\'o mayores tama\~nos (hasta 405B par\'ametros en versiones privadas), con una fuerte orientaci\'on a la investigaci\'on abierta y la compatibilidad con entornos de \textit{fine-tuning}.
+\end{itemize}
+
+Una de las principales contribuciones de la familia LLaMA fue democratizar el acceso a modelos de calidad comparable a GPT-3, pero bajo licencias abiertas, favoreciendo la investigaci\'on acad\'emica y el desarrollo de aplicaciones personalizadas.
+
+\subsubsection{DeepSeek}
+
+En el ecosistema m\'as reciente ha surgido DeepSeek, desarrollado en China como un competidor directo de modelos occidentales de gran escala. Su relevancia radica en dos aspectos:
+
+\begin{itemize}
+    \item \textbf{Optimizaci\'on computacional}: uso de t\'ecnicas avanzadas de entrenamiento distribuido que permiten reducir costos energ\'eticos y de hardware.
+    \item \textbf{Competencia global}: representa un movimiento estrat\'egico en la carrera internacional de LLMs, mostrando que la arquitectura Transformer puede adaptarse a entornos con recursos limitados pero ambiciones de despliegue masivo.
+\end{itemize}
+
+DeepSeek no s\'olo apunta a competir en calidad, sino tambi\'en a abrir el camino a modelos m\'as eficientes, lo que sugiere que el futuro de los LLMs no depende \'unicamente de escalar par\'ametros, sino de optimizar su entrenamiento y uso.
+
+\subsubsection{Otros modelos influyentes}
+
+Aunque GPT, LLaMA y DeepSeek ocupan hoy el centro de atenci\'on, existen otras familias de Transformers fundamentales en la evoluci\'on del campo:
+
+\begin{itemize}
+    \item \textbf{BERT (2018)}: modelo \textit{encoder-only} basado en \textit{masked language modeling}, dise\~nado para tareas de comprensi\'on como clasificaci\'on, b\'usqueda sem\'antica y an\'alisis de sentimiento.
+    \item \textbf{T5 (2019)}: modelo \textit{encoder-decoder} que formul\'o todas las tareas de PLN como problemas de traducci\'on de texto a texto.
+    \item \textbf{Mistral (2023)}: modelos ligeros de arquitectura \textit{decoder-only}, altamente eficientes, dise\~nados para ser competitivos con menos par\'ametros.
+    \item \textbf{Gemini (2023, Google DeepMind)}: sucesor de PaLM, con capacidades multimodales (texto e imagen) y mayor integraci\'on con entornos de b\'usqueda.
+\end{itemize}

@@ -1,0 +1,155 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Enunciado %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{myblock}
+\phantomsection\addcontentsline{toc}{section}{Parte B | GRU}
+\section*{Parte B | GRU}
+
+    Usando la misma base de la tarea 1, entrena un modelo por cada arquitectura: 
+    CNN, RNN/LSTM/GRU, y un Transformer de Hugging Face con fine-tuning. Reporta
+    accuracy y F1, incluye matriz de confusión y análisis de errores característicos.  
+
+\end{myblock}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Ya hemos introducido a la Gated Recurrent Unit (GRU) como una alternativa eficiente a la LSTM. Su 
+diseño busca resolver los mismos problemas de edsvanecimineto de gradiente y gestión de memoria a largo
+plazo, con una arquitectura más simple y menos parámetros, lo que puede resultar en tiempos de entrenamiento
+más económicos y un rendimiento comparable a la LSTM. 
+
+Para la tarea de clasificación de texto, la celda GRU se integra en la misma arquitectura de alto nivel 
+que la LSTM. El modelo procesa las secuecnias de entrada con una o más capas BiGRU para generar 
+secuencias de estados ocultos. Posteriormente, una capa de pooling, ya sea con MaxPooling o MeanPooling, 
+agrega los estados a un único vector de representaciones, que finalente es proyectado por una capa 
+lineal para obtener las probabilidades de cada clase. 
+
+\subsection{Resultados}
+
+Se evaluó la arquitectura BiGRU como una alternativa computacionalmente más eficiente a la BiLSTM. El experimento inicial, utilizando una configuración análoga al baseline de la LSTM, arrojó un resultado inesperado: con un F1-macro de 0.468, su rendimiento fue inferior no solo al de la LSTM, sino también al de la RNN simple. Este punto de partida motivó una serie de experimentos para determinar si una regularización más ajustada o cambios en la capacidad del modelo podrían mejorar su desempeño.
+
+\begin{table}[h!]
+    \centering
+    \caption{BiGRU — Resumen de experimentos en MeIA (polaridad 1–5).}
+    \label{tab:gru_meia_transposed}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lcccc}
+    \toprule
+    \textbf{Parámetro} & \texttt{...\_bigru\_max\_lr1e-3} & \textbf{\texttt{...\_bigru\_max\_regstrong}} & \texttt{...\_bigru\_h192\_regstrong} & \texttt{...\_bigru2\_max\_do20} \\
+    \midrule
+    \textbf{Hidden Size}       & 256                 & \textbf{256}                & 192                 & 256 \\
+    \textbf{Capas GRU}         & 1                   & \textbf{1}                  & 1                   & 2 \\
+    \textbf{Regularización}    & Base                & \textbf{Fuerte}             & Fuerte              & Base \\
+    \textbf{Val F1-M}          & 0.485               & 0.492                       & \textbf{0.502}      & 0.479 \\
+    \textbf{Test Acc / F1-M}   & 0.476 / 0.468       & \textbf{0.498 / 0.491}      & 0.480 / 0.467       & 0.478 / 0.464 \\
+    \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+
+\subsection{Conclusiones}
+
+
+\begin{itemize}
+    \item La arquitectura BiGRU demostró ser competitiva, pero no logró superar el rendimiento de la BiLSTM. El mejor modelo alcanzó un F1-macro de 0.491.
+    \item A diferencia de la BiLSTM, donde la regularización fuerte fue perjudicial, en la BiGRU fue esencial para el buen rendimiento. El modelo con regularización 
+    agresiva (mayor dropout, word dropout, etc.) superó significativamente al baseline, sugiriendo que la arquitectura GRU se beneficia más de estas técnicas en este problema.
+    \item El modelo con la mejor métrica en el conjunto de validación (F1 = 0.502, \texttt{...h192\_regstrong}) no fue el mejor en el conjunto de test. Este patrón, ya observado con la LSTM, subraya la importancia de la evaluación final en el conjunto de prueba.
+    \item Incrementar la profundidad del modelo apilando dos capas de BiGRU fue, una vez más, una estrategia ineficaz que degradó el rendimiento final.
+\end{itemize}
+
+
+La BiGRU se posiciona como una arquitectura recurrente sólida, cuyo rendimiento final se sitúa entre la RNN simple y la más compleja BiLSTM. Estos resultados demuestran la superioridad
+de la LSTM: mientras que el modelo baseline fue decepcionante, una estrategia de regularización fuerte fue la clave para desbloquear su potencial,
+logrando un F1-macro de 0.491. Esto sugiere que la estructura interna más simple de la GRU podría ser más propensa al sobreajuste en este dataset, un problema que fue mitigado
+eficazmente con las técnicas de regularización aplicadas. Aunque su eficiencia computacional la convierte en una opción atractiva, en términos de rendimiento puro en esta tarea,
+la BiLSTM mantiene la superioridad. Con esto se concluye la exploración de arquitecturas recurrentes,
+habiendo establecido una jerarquía clara de rendimiento: BiLSTM > BiGRU > Bi-RNN > TextCNN.
+
+
+\subsection{Visualización de Modelos}
+
+% --- Figura: Matrices de Confusión para GRU ---
+\begin{figure}[h!]
+    \centering
+    
+    % --- PRIMERA FILA ---
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png} 
+        \caption{\texttt{...max\_lr1e-3}}
+        \label{fig:conf_gru_exp1}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png}
+        \caption{\textbf{\texttt{...max\_regstrong}}}
+        \label{fig:conf_gru_exp2}
+    \end{subfigure}
+
+    \vspace{1em} % Espacio vertical entre filas
+
+    % --- SEGUNDA FILA ---
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png} 
+        \caption{\texttt{...h192\_regstrong}}
+        \label{fig:conf_gru_exp3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png} 
+        \caption{\texttt{...bigru2\_max...}}
+        \label{fig:conf_gru_exp4}
+    \end{subfigure}
+
+    \caption{Matrices de confusión para los experimentos de BiGRU. El modelo con regularización fuerte (arriba, derecha) logró el mejor rendimiento en test.}
+    \label{fig:confusion_matrices_gru}
+\end{figure}
+
+% --- Figura: Curvas ROC OVR para GRU ---
+\begin{figure}[h!]
+    \centering
+
+    % --- PRIMERA FILA ---
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png} 
+        \caption{\texttt{...max\_lr1e-3}}
+        \label{fig:roc_gru_exp1}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png}
+        \caption{\textbf{\texttt{...max\_regstrong}}}
+        \label{fig:roc_gru_exp2}
+    \end{subfigure}
+
+    \vspace{1em} % Espacio vertical entre filas
+
+    % --- SEGUNDA FILA ---
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png} 
+        \caption{\texttt{...h192\_regstrong}}
+        \label{fig:roc_gru_exp3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png} 
+        \caption{\texttt{...bigru2\_max...}}
+        \label{fig:roc_gru_exp4}
+    \end{subfigure}
+    
+    \caption{Curvas ROC One-vs-Rest (OVR) para los experimentos de BiGRU.}
+    \label{fig:roc_curves_gru}
+\end{figure}
+
+\clearpage
