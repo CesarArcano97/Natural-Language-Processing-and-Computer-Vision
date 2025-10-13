@@ -1,0 +1,36 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Enunciado %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{myblock}
+\phantomsection\addcontentsline{toc}{section}{Parte B | BETO}
+\section*{Parte B | BETO}
+
+    Usando la misma base de la tarea 1, entrena un modelo por cada arquitectura: 
+    CNN, RNN/LSTM/GRU, y un Transformer de Hugging Face con fine-tuning. Reporta
+    accuracy y F1, incluye matriz de confusión y análisis de errores característicos.  
+
+\end{myblock}
+
+Para esta prueba reutilizamos lo usado en RESTMex2025. 
+
+Es claro como un trasnformer mejora sustancialmente los resultados, superando por bastante a las arquitecturas de redes neuronales
+recurrentes. La jerarquía ahora queda establecida de manera muy clara: Transformers >> BiLSTM > BiGRU > Bi-RNN > TextCNN.
+
+
+\subsection{Visualización de Modelos}
+
+% --- Figura: Matrices de Confusión para Transformers ---
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{/home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/matriz_confusion_transformer_c.png}
+    \caption{Matriz de Confusión | Polaridad Transformer.}
+    \label{fig:Matriz_Transformer}
+\end{figure}
+
+
+\clearpage
+
+

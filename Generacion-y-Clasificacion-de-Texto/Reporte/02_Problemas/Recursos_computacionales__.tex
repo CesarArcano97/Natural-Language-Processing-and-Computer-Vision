@@ -1,0 +1,20 @@
+\newpage
+\phantomsection\addcontentsline{toc}{section}{Recursos computacionales}
+\section*{Recursos computacionales}
+
+Para esta tarea, nos apoyamos del Laboratorio de Supercómputo de CIMAT. El servidor de este Laboratorio
+cuenta con dos unidades NVIDIA TITAN RTX, con 24 GB de VRAM por GPU. Además, cuenta con 12.3 nodos y 12.1
+con conda. El ecceso es remoto, vía SSH y trabajamos con nodos computacionales sin acceso a internet. La 
+descarga de los modleos Transformer se realizaron primero a mi computadora y luego se suvieron al Laboratorio. 
+
+Esto nos permitió manejar y finetunear modelos más grandes de lo que mi computadora puede soportar, como 
+lo fueron Mistral-7B o LLaMA. En mi caso, los modelos corridos en mi PC fueron las arquitecturas de redes 
+neuronales recurrentes (RNN, LSTM y GRU). Mi computadora cuenta con una NVIDIA GeForce GTX 1650, de 4GB de 
+de VRAM y 12.4 nodos. 
+
+Entre las cosas que aprendimos, aparte de lo solicitado en la tarea, fue el manejo de SLURM y de comandos
+para servidores como el de CIMAT. 
+
+Los tiempos de ejecución para los modelos de Transformers en general fueron rápidos, aproximadamente 10 por prueba. En 
+el caso de los modelos de redes neuronales recurrentes, los tiempos de ejecución en mi computadora tardaron máximo 
+30 minutos por modelo, dependiendo de los hiperparámetros. 

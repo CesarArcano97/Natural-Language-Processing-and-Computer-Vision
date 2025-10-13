@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.3)  6 OCT 2025 21:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.3)  12 OCT 2025 20:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/main.tex
-(/home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/main.tex
+**/home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/main.tex
+(/home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/extsizes/extarticle.cls
@@ -1374,7 +1374,7 @@ LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line
  (/usr/share/texlive/texmf-dist/tex/latex/stix/ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 )
-<Images/wordcloud_TOP.png, id=287, 974.64125pt x 615.29875pt>
+<Images/wordcloud_TOP.png, id=299, 974.64125pt x 615.29875pt>
 File: Images/wordcloud_TOP.png Graphic file (type png)
 <use Images/wordcloud_TOP.png>
 Package pdftex.def Info: Images/wordcloud_TOP.png  used on input line 51.
@@ -1389,7 +1389,7 @@ LaTeX Info: Redefining \% on input line 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.34 ...}{El cambio de paradigma}{27}{section*.24}
+l.33 ...bsection}{Conclusiones}{26}{lstnumber.6.1}
                                                   % [1
 
 
@@ -1397,12 +1397,12 @@ l.34 ...}{El cambio de paradigma}{27}{section*.24}
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- (./02_Problemas/PPL_.tex [3] [4]
+ (./02_Problemas/Recursos_computacionales__.tex [3]) (./02_Problemas/PPL_.tex [4] [5]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 99.
 
-) (./02_Problemas/01__.tex [5]
+) (./02_Problemas/01__.tex [6]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 38.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1411,7 +1411,7 @@ Overfull \hbox (42.71509pt too wide) in paragraph at lines 38--41
 []\T1/stix/m/n/12 El pro-ce-so de des-car-ga se au-to-ma-ti-zó me-dian-te un script, uti-li-zan-do la bi-blio-te-ca \T1/cmtt/m/n/12 lyricsgenius\T1/stix/m/n/12 ,
  []
 
-[6{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+[7{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 60.
@@ -1419,7 +1419,7 @@ Package hyperref Warning: The anchor of a bookmark and its parent's must not
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Images/Zipf_TOP.png, id=408, 725.5908pt x 454.5783pt>
+<Images/Zipf_TOP.png, id=428, 725.5908pt x 454.5783pt>
 File: Images/Zipf_TOP.png Graphic file (type png)
 <use Images/Zipf_TOP.png>
 Package pdftex.def Info: Images/Zipf_TOP.png  used on input line 128.
@@ -1427,57 +1427,57 @@ Package pdftex.def Info: Images/Zipf_TOP.png  used on input line 128.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7]
+[8]
 
-LaTeX Warning: Text page 8 contains only floats.
+LaTeX Warning: Text page 9 contains only floats.
 
-[8 <./Images/Zipf_TOP.png>]
+[9 <./Images/Zipf_TOP.png>]
 File: Images/wordcloud_TOP.png Graphic file (type png)
 <use Images/wordcloud_TOP.png>
 Package pdftex.def Info: Images/wordcloud_TOP.png  used on input line 138.
 (pdftex.def)             Requested size: 344.005pt x 217.1698pt.
- [9]) (./02_Problemas/02__.tex
+ [10]) (./02_Problemas/02__.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 41.
 
-[10
+[11
 
-] [11]
+] [12]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 86.
 
-[12]
+[13]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 126.
- [13]
-<Images/rnn_training_history_c.png, id=456, 722.7pt x 433.62pt>
+ [14]
+<Images/rnn_training_history_c.png, id=477, 722.7pt x 433.62pt>
 File: Images/rnn_training_history_c.png Graphic file (type png)
 <use Images/rnn_training_history_c.png>
 Package pdftex.def Info: Images/rnn_training_history_c.png  used on input line 149.
 (pdftex.def)             Requested size: 206.40038pt x 123.84102pt.
-<Images/rnn_training_history_w.png, id=457, 722.7pt x 433.62pt>
+<Images/rnn_training_history_w.png, id=478, 722.7pt x 433.62pt>
 File: Images/rnn_training_history_w.png Graphic file (type png)
 <use Images/rnn_training_history_w.png>
 Package pdftex.def Info: Images/rnn_training_history_w.png  used on input line 156.
 (pdftex.def)             Requested size: 206.40038pt x 123.84102pt.
- [14
+ [15
 
- <./Images/rnn_training_history_c.png> <./Images/rnn_training_history_w.png>] [15]) (./02_Problemas/03__.tex
-<Images/lstm-jurafsky.png, id=473, 488.82625pt x 277.035pt>
+ <./Images/rnn_training_history_c.png> <./Images/rnn_training_history_w.png>] [16]) (./02_Problemas/03__.tex
+<Images/lstm-jurafsky.png, id=493, 488.82625pt x 277.035pt>
 File: Images/lstm-jurafsky.png Graphic file (type png)
 <use Images/lstm-jurafsky.png>
 Package pdftex.def Info: Images/lstm-jurafsky.png  used on input line 28.
 (pdftex.def)             Requested size: 344.005pt x 194.96306pt.
- [16
+ [17
 
- <./Images/lstm-jurafsky.png>] [17]
+ <./Images/lstm-jurafsky.png>] [18]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 97.
 
-[18]
-<Images/lstm_training_history_w.png, id=492, 722.7pt x 433.62pt>
+[19]
+<Images/lstm_training_history_w.png, id=512, 722.7pt x 433.62pt>
 File: Images/lstm_training_history_w.png Graphic file (type png)
 <use Images/lstm_training_history_w.png>
 Package pdftex.def Info: Images/lstm_training_history_w.png  used on input line 134.
@@ -1486,38 +1486,38 @@ Package pdftex.def Info: Images/lstm_training_history_w.png  used on input line 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[19] [20 <./Images/lstm_training_history_w.png>] [21]) (./02_Problemas/04__.tex
+[20] [21 <./Images/lstm_training_history_w.png>] [22]) (./02_Problemas/04__.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 34.
 
-[22
+[23
 
 ]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 57.
 
-[23] [24] [25] [26]) (./02_Problemas/Transformers_.tex
+[24] [25] [26] [27]) (./02_Problemas/Transformers_.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 34.
 
-[27
+[28
 
-] [28]
+] [29]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 118.
 
-[29] [30]) (./02_Problemas/05__.tex [31]
+[30] [31]) (./02_Problemas/05__.tex [32]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 28.
 
-[32] [33
+[33] [34
 
-] [34]) (./02_Problemas/06_.tex
+] [35]) (./02_Problemas/06_.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 19.
@@ -1530,15 +1530,15 @@ Overfull \hbox (2.67717pt too wide) in paragraph at lines 24--27
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 54.
 (/usr/share/texlive/texmf-dist/tex/latex/stix/ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
-) [35
+) [36
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}] [36] [37
-
-] [38
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}] [37] [38
 
 ] [39
 
-] [40]) (./02_Problemas/07_.tex
+] [40
+
+] [41]) (./02_Problemas/07_.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 27.
@@ -1553,15 +1553,15 @@ Overfull \hbox (7.69402pt too wide) in paragraph at lines 55--67
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-</home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png, id=701, 433.62pt x 361.35pt>
-File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png Graphic file (type png)
-<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png>
-Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png  used on input line 77.
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png, id=721, 433.62pt x 361.35pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png  used on input line 77.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png, id=702, 433.62pt x 361.35pt>
-File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png Graphic file (type png)
-<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png>
-Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png  used on input line 85.
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png, id=722, 433.62pt x 361.35pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png  used on input line 85.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 86--86
@@ -1573,10 +1573,10 @@ Overfull \hbox (3.85466pt too wide) in paragraph at lines 86--86
 |\T1/cmtt/m/n/10.95 exp_textcnn_f64_k345_do50| 
  []
 
-</home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png, id=703, 433.62pt x 361.35pt>
-File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png Graphic file (type png)
-<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png>
-Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png  used on input line 93.
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png, id=723, 433.62pt x 361.35pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png  used on input line 93.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 94.
@@ -1593,18 +1593,18 @@ Overfull \hbox (20.82977pt too wide) in paragraph at lines 94--94
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[41
+[42
 
-] [42 </home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png>]
-</home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png, id=721, 433.62pt x 361.35pt>
-File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png Graphic file (type png)
-<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png>
-Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png  used on input line 109.
+] [43 </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/confusion_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/confusion_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/confusion_test.png>]
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png, id=741, 433.62pt x 361.35pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png  used on input line 109.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png, id=722, 433.62pt x 361.35pt>
-File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png Graphic file (type png)
-<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png>
-Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png  used on input line 117.
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png, id=742, 433.62pt x 361.35pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png  used on input line 117.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 118--118
@@ -1616,10 +1616,10 @@ Overfull \hbox (3.85466pt too wide) in paragraph at lines 118--118
 |\T1/cmtt/m/n/10.95 exp_textcnn_f64_k345_do50| 
  []
 
-</home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png, id=723, 433.62pt x 361.35pt>
-File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png Graphic file (type png)
-<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png>
-Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png  used on input line 125.
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png, id=743, 433.62pt x 361.35pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png  used on input line 125.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 126--126
@@ -1631,46 +1631,46 @@ Overfull \hbox (20.82977pt too wide) in paragraph at lines 126--126
 |\T1/cmtt/m/n/10.95 exp_textcnn_k345_f128_lr1e-3| 
  []
 
-[43
+[44
 
- </home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Tarea-02/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png>] [44]) (./02_Problemas/08_.tex
+ </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f128_do60/roc_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_f64_k345_do50/roc_test.png> </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/CNN/exp_textcnn_k345_f128_lr1e-3/roc_test.png>] [45]) (./02_Problemas/08_.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 32.
 
-[45
+[46
 
 ]
 Overfull \hbox (38.99994pt too wide) in paragraph at lines 67--79
  [][] 
  []
 
-</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png, id=742, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png, id=762, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png  used on input line 90.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png, id=743, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png, id=763, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png  used on input line 99.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png, id=744, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png, id=764, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png  used on input line 108.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png, id=745, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png, id=765, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png  used on input line 123.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png, id=746, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png, id=766, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png  used on input line 132.
 (pdftex.def)             Requested size: 137.60461pt x 114.66945pt.
-</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png, id=747, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png, id=767, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png  used on input line 141.
@@ -1678,35 +1678,35 @@ Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmea
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[46 </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png>] [47 </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png>] [48]) (./02_Problemas/09_.tex
+[47 </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/confusion_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/confusion_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/confusion_test.png>] [48 </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_five/roc_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_ls005_wd2e-4_mean_do60/roc_test.png> </home/cesar/project_b_t02nlp/models/rnn/exp_brnn_maxmean_ls002_wd2e-4_do50/roc_test.png>] [49]) (./02_Problemas/09_.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 27.
 
-[49
+[50
 
-] [50]
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png, id=781, 433.62pt x 361.35pt>
+] [51]
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png, id=801, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png  used on input line 151.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png, id=782, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png, id=802, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png  used on input line 158.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png, id=783, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png, id=803, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png  used on input line 168.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png, id=784, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png, id=804, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png  used on input line 178.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png, id=785, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png, id=805, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png  used on input line 185.
@@ -1718,27 +1718,27 @@ LaTeX Warning: Float too large for page by 51.07225pt on input line 192.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png, id=786, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png, id=806, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png  used on input line 204.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png, id=787, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png, id=807, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png  used on input line 211.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png, id=788, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png, id=808, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png  used on input line 221.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png, id=789, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png, id=809, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png  used on input line 231.
 (pdftex.def)             Requested size: 193.50076pt x 161.24962pt.
-</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png, id=790, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png, id=810, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png  used on input line 238.
@@ -1749,34 +1749,34 @@ LaTeX Warning: Float too large for page by 51.07225pt on input line 245.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[51] [52 </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png>] [53 </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png>]) (./02_Problemas/10_.tex
+[52] [53 </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/confusion_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/confusion_test.png>] [54 </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_lr1e-3/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm4_max_do20/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_maxmean_ls000/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_max_regstrong/roc_test.png> </home/cesar/project_b_t02nlp/models/lstm/exp_bilstm_h192_do60_wd2e-4_wdrop005/roc_test.png>]) (./02_Problemas/10_.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 29.
 
-[54
+[55
 
 ]
 Overfull \hbox (51.07243pt too wide) in paragraph at lines 60--61
 []\T1/stix/m/n/12 El mo-de-lo con la me-jor mé-tri-ca en el con-jun-to de va-li-da-ción (F1 = 0.502, \T1/cmtt/m/n/12 ...h192_regstrong\T1/stix/m/n/12 )
  []
 
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png, id=824, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png, id=845, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png  used on input line 82.
 (pdftex.def)             Requested size: 206.40038pt x 172.00142pt.
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png, id=825, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png, id=846, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png  used on input line 89.
 (pdftex.def)             Requested size: 206.40038pt x 172.00142pt.
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png, id=826, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png, id=847, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png  used on input line 99.
 (pdftex.def)             Requested size: 206.40038pt x 172.00142pt.
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png, id=827, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png, id=848, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png  used on input line 106.
@@ -1784,22 +1784,22 @@ Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png, id=828, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png, id=849, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png  used on input line 122.
 (pdftex.def)             Requested size: 206.40038pt x 172.00142pt.
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png, id=829, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png, id=850, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png  used on input line 129.
 (pdftex.def)             Requested size: 206.40038pt x 172.00142pt.
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png, id=830, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png, id=851, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png  used on input line 139.
 (pdftex.def)             Requested size: 206.40038pt x 172.00142pt.
-</home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png, id=831, 433.62pt x 361.35pt>
+</home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png, id=852, 433.62pt x 361.35pt>
 File: /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png Graphic file (type png)
 <use /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png>
 Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png  used on input line 146.
@@ -1807,19 +1807,29 @@ Package pdftex.def Info: /home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[55] [56 </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png>] [57 </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png>]) (./02_Problemas/Transformers_class__.tex
+[56] [57 </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/confusion_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/confusion_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/confusion_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/confusion_test.png>] [58 </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_lr1e-3/roc_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_max_regstrong/roc_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru_h192_regstrong/roc_test.png> </home/cesar/project_b_t02nlp/models/gru/exp_bigru2_max_do20/roc_test.png>]) (./02_Problemas/Transformers_class__.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 32.
 
-[58
+[59
 
 ]
 Overfull \hbox (13.99536pt too wide) in paragraph at lines 64--73
  [][] 
  []
 
-) [59] (./main.aux
+) (./02_Problemas/11__.tex [60]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 22.
+
+</home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/matriz_confusion_transformer_c.png, id=890, 464.6961pt x 401.0985pt>
+File: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/matriz_confusion_transformer_c.png Graphic file (type png)
+<use /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/matriz_confusion_transformer_c.png>
+Package pdftex.def Info: /home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/matriz_confusion_transformer_c.png  used on input line 28.
+(pdftex.def)             Requested size: 344.005pt x 296.92451pt.
+[61 </home/cesar/Natural-Language-Processing-and-Computer-Vision/Generacion-y-Clasificacion-de-Texto/Reporte/Images/matriz_confusion_transformer_c.png>]) (./main.aux
 LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 )
@@ -1832,21 +1842,21 @@ L3 programming layer <2024-01-22>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 363BAB2CD866F9AF4242198CB6140379;12212.
+(rerunfilecheck)             Checksum: 4C8C84E4AE7E3AD0D746E552C483C6D5;12697.
  ) 
 Here is how much of TeX's memory you used:
- 53804 strings out of 474222
- 1240247 string characters out of 5748733
+ 53835 strings out of 474222
+ 1243101 string characters out of 5748733
  2606975 words of memory out of 5000000
- 75028 multiletter control sequences out of 15000+600000
+ 75047 multiletter control sequences out of 15000+600000
  645929 words of font info for 129 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 107i,12n,110p,1168b,2556s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 107i,12n,110p,1195b,2559s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-BoldItalic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathbb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathcal.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on main.pdf (60 pages, 2227174 bytes).
+Output written on main.pdf (62 pages, 2257564 bytes).
 PDF statistics:
- 977 PDF objects out of 1000 (max. 8388607)
- 790 compressed objects within 8 object streams
- 214 named destinations out of 1000 (max. 500000)
- 853 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1011 PDF objects out of 1200 (max. 8388607)
+ 819 compressed objects within 9 object streams
+ 220 named destinations out of 1000 (max. 500000)
+ 882 words of extra memory for PDF output out of 10000 (max. 10000000)
 
