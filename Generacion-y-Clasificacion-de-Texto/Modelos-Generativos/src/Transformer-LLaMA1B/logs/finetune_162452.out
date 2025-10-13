@@ -1,0 +1,5 @@
+{'loss': 1.242, 'grad_norm': 4.178383827209473, 'learning_rate': 3.648648648648649e-05, 'epoch': 2.08}
+{'loss': 0.6122, 'grad_norm': 2.7726030349731445, 'learning_rate': 1.718146718146718e-05, 'epoch': 4.17}
+{'train_runtime': 187.4469, 'train_samples_per_second': 6.114, 'train_steps_per_second': 1.536, 'train_loss': 0.7718983756171333, 'epoch': 6.0}
+Evaluación final: {'eval_loss': 2.0724148750305176, 'eval_runtime': 1.1192, 'eval_samples_per_second': 18.764, 'eval_steps_per_second': 1.787, 'epoch': 6.0, 'perplexity': 7.943983701213781}
+I like my soul but not my mind, the last two lines may read incorrect until said Mm-mm, yeah It's a tribute to zombies of which I have become You were keeping track Though I feed on things that fell And you could bring down my level of concern <|startsong|> Who-o-o-oa, who-o-oa To maybe overcompensate Help me polarize, help me polarize, help me out Remember

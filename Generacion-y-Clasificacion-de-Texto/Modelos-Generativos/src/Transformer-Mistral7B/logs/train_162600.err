@@ -1,0 +1,21 @@
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:11,  5.50s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:11<00:05,  5.64s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:17<00:00,  5.86s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:17<00:00,  5.79s/it]
+Unsloth: Dropout = 0 is supported for fast patching. You are using dropout = 0.05.
+Unsloth will patch all other layers, except LoRA matrices, causing a performance hit.
+Unsloth 2025.9.7 patched 32 layers with 0 QKV layers, 0 O layers and 0 MLP layers.
+/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py:565: UserWarning: You passed a `packing` argument to the SFTTrainer, the value you passed will override the one in the `SFTConfig`.
+  warnings.warn(
+/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py:653: UserWarning: You passed a `max_seq_length` argument to the SFTTrainer, the value you passed will override the one in the `SFTConfig`.
+  warnings.warn(
+/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py:691: UserWarning: You passed a `dataset_text_field` argument to the SFTTrainer, the value you passed will override the one in the `SFTConfig`.
+  warnings.warn(
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 51 examples [00:00, 1148.80 examples/s]
+/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py:786: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `UnslothSFTTrainer.__init__`. Use `processing_class` instead.
+  super().__init__(
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 51 | Num Epochs = 3 | Total steps = 18
+O^O/ \_/ \    Batch size per device = 2 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (2 x 4 x 1) = 8
+ "-____-"     Trainable parameters = 13,631,488 of 7,255,363,584 (0.19% trained)
+  0%|          | 0/18 [00:00<?, ?it/s]  6%|▌         | 1/18 [00:14<03:58, 14.04s/it] 11%|█         | 2/18 [00:20<02:28,  9.29s/it] 17%|█▋        | 3/18 [00:25<01:56,  7.76s/it] 22%|██▏       | 4/18 [00:31<01:38,  7.06s/it] 28%|██▊       | 5/18 [00:37<01:26,  6.67s/it] 33%|███▎      | 6/18 [00:43<01:17,  6.45s/it] 39%|███▉      | 7/18 [00:47<00:59,  5.41s/it] 44%|████▍     | 8/18 [00:53<00:57,  5.78s/it] 50%|█████     | 9/18 [00:59<00:52,  5.87s/it] 56%|█████▌    | 10/18 [01:06<00:47,  5.96s/it]                                                56%|█████▌    | 10/18 [01:06<00:47,  5.96s/it] 61%|██████    | 11/18 [01:12<00:42,  6.10s/it] 67%|██████▋   | 12/18 [01:18<00:37,  6.24s/it] 72%|███████▏  | 13/18 [01:25<00:32,  6.42s/it] 78%|███████▊  | 14/18 [01:28<00:21,  5.33s/it] 83%|████████▎ | 15/18 [01:36<00:18,  6.15s/it] 89%|████████▉ | 16/18 [01:44<00:13,  6.72s/it] 94%|█████████▍| 17/18 [01:52<00:07,  7.06s/it]100%|██████████| 18/18 [02:00<00:00,  7.30s/it]                                               100%|██████████| 18/18 [02:00<00:00,  7.30s/it]100%|██████████| 18/18 [02:00<00:00,  6.71s/it]

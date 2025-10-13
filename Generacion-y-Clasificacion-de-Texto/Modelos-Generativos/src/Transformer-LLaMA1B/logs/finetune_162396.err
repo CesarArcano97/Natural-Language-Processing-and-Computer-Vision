@@ -1,0 +1,12 @@
+Generating data split: 0 examples [00:00, ? examples/s]Generating data split: 5721 examples [00:00, 46128.64 examples/s]Generating data split: 5721 examples [00:00, 45515.03 examples/s]
+Map:   0%|          | 0/5148 [00:00<?, ? examples/s]Map:  78%|███████▊  | 4000/5148 [00:00<00:00, 31045.86 examples/s]Map: 100%|██████████| 5148/5148 [00:00<00:00, 31035.96 examples/s]
+Map:   0%|          | 0/573 [00:00<?, ? examples/s]Map: 100%|██████████| 573/573 [00:00<00:00, 29030.01 examples/s]
+Map:   0%|          | 0/5148 [00:00<?, ? examples/s]Map:  97%|█████████▋| 5000/5148 [00:00<00:00, 38737.37 examples/s]Map: 100%|██████████| 5148/5148 [00:00<00:00, 37722.75 examples/s]
+Map:   0%|          | 0/573 [00:00<?, ? examples/s]Map: 100%|██████████| 573/573 [00:00<00:00, 32063.29 examples/s]
+Traceback (most recent call last):
+  File "/home/est_posgrado_cesar.aguirre/llama-beta/src/train_finetuning.py", line 132, in <module>
+    main(args)
+  File "/home/est_posgrado_cesar.aguirre/llama-beta/src/train_finetuning.py", line 61, in main
+    training_args = TrainingArguments(
+                    ^^^^^^^^^^^^^^^^^^
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'

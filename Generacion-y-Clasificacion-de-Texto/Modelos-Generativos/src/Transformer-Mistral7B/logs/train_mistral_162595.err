@@ -1,0 +1,59 @@
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/datapoints/__init__.py:12: UserWarning: The torchvision.datapoints and torchvision.transforms.v2 namespaces are still Beta. While we do not expect major breaking changes, some APIs may still change according to user feedback. Please submit any feedback you may have in this issue: https://github.com/pytorch/vision/issues/6753, and you can also check out https://github.com/pytorch/vision/issues/7319 to learn more about the APIs that we suspect might involve future changes. You can silence this warning by calling torchvision.disable_beta_transforms_warning().
+  warnings.warn(_BETA_TRANSFORMS_WARNING)
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/transforms/v2/__init__.py:54: UserWarning: The torchvision.datapoints and torchvision.transforms.v2 namespaces are still Beta. While we do not expect major breaking changes, some APIs may still change according to user feedback. Please submit any feedback you may have in this issue: https://github.com/pytorch/vision/issues/6753, and you can also check out https://github.com/pytorch/vision/issues/7319 to learn more about the APIs that we suspect might involve future changes. You can silence this warning by calling torchvision.disable_beta_transforms_warning().
+  warnings.warn(_BETA_TRANSFORMS_WARNING)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:07<00:14,  7.06s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:14<00:07,  7.14s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:20<00:00,  6.78s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:20<00:00,  6.87s/it]
+Unsloth: Dropout = 0 is supported for fast patching. You are using dropout = 0.05.
+Unsloth will patch all other layers, except LoRA matrices, causing a performance hit.
+Unsloth 2025.9.11 patched 32 layers with 0 QKV layers, 0 O layers and 0 MLP layers.
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 94 | Num Epochs = 3 | Total steps = 18
+O^O/ \_/ \    Batch size per device = 4 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (4 x 4 x 1) = 16
+ "-____-"     Trainable parameters = 13,631,488 of 7,255,363,584 (0.19% trained)
+  0%|          | 0/18 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/src/train/train_mistral.py", line 85, in <module>
+    train_output = trainer.train()
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py", line 53, in wrapper
+    output = f(self, *args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/trainer.py", line 2328, in train
+    return inner_training_loop(
+  File "<string>", line 325, in _fast_inner_training_loop
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py", line 1040, in training_step
+    return super().training_step(*args, **kwargs)
+  File "<string>", line 40, in _unsloth_training_step
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py", line 1029, in compute_loss
+    outputs = super().compute_loss(
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/models/_utils.py", line 1321, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/trainer.py", line 4099, in compute_loss
+    outputs = model(**inputs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/accelerate/utils/operations.py", line 818, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/accelerate/utils/operations.py", line 806, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/_compile.py", line 53, in inner
+    return disable_fn(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 929, in _fn
+    return fn(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/models/llama.py", line 1342, in PeftModel_fast_forward
+    return self.base_model(
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 222, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/models/mistral.py", line 304, in MistralForCausalLM_fast_forward
+    n_items = kwargs.get("num_items_in_batch", None) or kwargs.get("n_items", None)
+RuntimeError: Boolean value of Tensor with more than one value is ambiguous

@@ -1,0 +1,6 @@
+usage: train_finetuning.py [-h] --model_name MODEL_NAME --train_file
+                           TRAIN_FILE [--output_dir OUTPUT_DIR]
+                           [--epochs EPOCHS] [--batch_size BATCH_SIZE]
+                           [--block_size BLOCK_SIZE]
+                           [--learning_rate LEARNING_RATE]
+train_finetuning.py: error: the following arguments are required: --model_name, --train_file

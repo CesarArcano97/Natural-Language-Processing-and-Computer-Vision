@@ -20,7 +20,7 @@
 
   ---
 
-  ## 🛠️ Arquitecturas Exploradas
+  ## Arquitecturas Exploradas
 
   Se implementaron y evaluaron las siguientes arquitecturas:
 
@@ -75,84 +75,273 @@
   * PyTorch 2.0+
   * Git
 
-  ### Uso
-
-  Los scripts para entrenar y evaluar los modelos se encuentran en el directorio `src/`.
-
-  **Ejemplo: Entrenar un clasificador BiLSTM**
-  ```bash
-  python -m src.train.train_rnnclf \
-    --data_dir data/processed/classif/five \
-    --out_dir models/bilstm/exp_bilstm_baseline \
-    --rnn_type lstm \
-    --bidirectional \
-    --embed_dim 256 --hidden_size 256 \
-    --num_layers 1 \
-    --pool max \
-    --proj_dropout 0.5 \
-    --lr 1e-3 \
-    --batch_size 64 --epochs 25 --patience 5
-  ```
-
-  **Ejemplo: Evaluar un modelo guardado**
-  ```bash
-  python -m src.eval.evaluate_rnn \
-    --ckpt models/bilstm/exp_bilstm_baseline/best_model.pt \
-    --data_dir data/processed/classif/five \
-    --out_dir models/bilstm/exp_bilstm_baseline
-  ```
-
-  ---
-
-  ## Resumen de Resultados
-
-  El análisis completo, las gráficas y las conclusiones detalladas se encuentran en el **reporte en PDF**. A continuación, un resumen de los hallazgos clave:
-
-  ### Generación de Texto
-
-  * Los modelos Transformer, especialmente **Mistral-7B con LoRA**, demostraron una superioridad abrumadora en la calidad de la generación. Produjeron texto con mayor coherencia, estructura lírica y fidelidad estilística.
-  * Las arquitecturas recurrentes (RNN, LSTM, GRU) sirvieron como excelentes líneas base, pero mostraron limitaciones en la coherencia a largo plazo y una mayor tendencia a la repetición.
-
-  ### Clasificación de Texto
-
-  * Se estableció una clara jerarquía de rendimiento entre las arquitecturas no-Transformers, donde la **BiLSTM** obtuvo el mejor resultado:
-      1.  **BiLSTM** (F1-Macro: 0.515) 
-      2.  **BiGRU** (F1-Macro: 0.491) 
-      3.  **Bi-RNN** (F1-Macro: 0.484) 
-      4.  **TextCNN** (F1-Macro: 0.441)
-  * Un desafío constante en todos los modelos fue la clasificación de las clases intermedias y ambiguas (2, 3 y 4 estrellas), mientras que las clases extremas (1 y 5) fueron identificadas con mayor facilidad.
-
-  ---
-
-  ## 📁 Estructura del Proyecto
-
-  ```
-  .
-  ├── data/                  # Scripts para descargar y procesar datos
-  ├── models/                # Checkpoints de modelos entrenados y resultados
-  │   ├── cnn/
-  │   ├── rnn/
-  │   └── ...
-  ├── report/
-  │   └── Tarea2_Reporte.pdf   # Reporte final del proyecto
-  ├── src/
-  │   ├── data/              # Módulos de carga de datos (Dataset, Dataloader)
-  │   ├── eval/              # Scripts para evaluar modelos
-  │   ├── models/            # Definiciones de arquitecturas de modelos
-  │   └── train/             # Scripts para entrenar modelos
-  ├── requirements.txt       # Dependencias del proyecto
-  └── README.md              # Este archivo
-  ```
-
-  ---
-
-  ## Autor
-
-  * César M. Aguirre Calzadilla
-
   
 
-  ## Licencia
+  # Proyecto de Modelos Generativos y Clasificatorios – Tarea 02  
+  **Procesamiento de Lenguaje Natural (PLN)**  
+  **Autor:** *César Aguirre*  
+  **Servidor de entrenamiento:** CIMAT HPC Cluster  
+  
+  ---
+  
+  ## Objetivos generales
+  
+  El proyecto aborda dos grandes bloques complementarios dentro del PLN:
+  
+  1. **Generación de texto:**  
+     Entrenar modelos generativos (RNN, LSTM, GRU y Transformer finetuneado) para producir letras de canciones.
+  
+  2. **Clasificación de texto:**  
+     Entrenar modelos de clasificación (CNN, RNN, LSTM, GRU y BETO) sobre el mismo corpus, con el fin de comparar desempeño, arquitectura y comportamiento semántico.
 
+  ---
+  
+  ## Estructura del proyecto
+  
+  ```bash
+  project/
+  │
+  ├── data/
+  │   ├── raw/
+  │   │   ├── canciones.txt
+  │   │   └── MeIA.csv
+  │   └── processed/
+  │       ├── char/
+  │       ├── word/
+  │       └── classif/five/
+  │
+  ├── models/
+  │   ├── rnn/
+  │   ├── lstm/
+  │   ├── gru/
+  │   ├── cnn/
+  │   ├── transformer/         # Fine-tuning Mistral / BETO
+  │   └── checkpoints/
+  │
+  ├── outputs/
+  │   ├── sample_rnn.txt
+  │   ├── sample_lstm.txt
+  │   ├── sample_gru.txt
+  │   └── mistral_output.txt
+  │
+  ├── results/
+  │   └── novelty/
+  │       ├── novelty_analysis.csv
+  │       └── novelty_plot.png
+  │
+  ├── scripts/
+  │   ├── generate_mistral_offline.slurm
+  │   └── train_beto.slurm
+  │
+  ├── src/
+  │   ├── prepare_corpus.py
+  │   ├── generate.py
+  │   ├── analyze_novelty.py
+  │   ├── train_rnn.py
+  │   ├── train_lstm.py
+  │   ├── train_gru.py
+  │   ├── train_cnn.py
+  │   ├── train_rnnclf_01.py
+  │   ├── eval/
+  │   │   ├── evaluate_rnn.py
+  │   │   └── evaluate.py
+  │   └── transformers/
+  │       └── fine_tune_beto.py
+  │
+  └── requirements.txt
+  ```
+  
+  ________________________________
+  
+  ## Dependencias
+  
+  El entorno de trabajo requiere **Python 3.9+** y las siguientes librerías principales:
+  
+  ```
+  torch
+  transformers
+  peft
+  tqdm
+  numpy
+  pandas
+  matplotlib
+  scikit-learn
+  ```
+  
+  ### Instalación
+  
+  ```
+  conda create -n nlp-t02 python=3.9
+  conda activate nlp-t02
+  pip install -r requirements.txt
+  ```
+  
+  ---
+  
+  ## PARTE I — Modelos Generativos
+  
+  ### Objetivo
+  
+  Generar letras de canciones en el estilo de *Twenty One Pilots*, explorando arquitecturas secuenciales clásicas (RNN, LSTM, GRU) y modelos de lenguaje grandes (Mistral).
+  
+  ------
+  
+  ### Flujo de trabajo
+  
+  #### 1. Preparar corpus
+  
+  ```
+  python src/prepare_corpus.py --input data/raw/canciones.txt --level char
+  python src/prepare_corpus.py --input data/raw/canciones.txt --level word
+  ```
+  
+  #### 2. Entrenar modelos
+  
+  ```
+  python src/train_rnn.py --level word --epochs 20
+  python src/train_lstm.py --level word --epochs 20
+  python src/train_gru.py --level char --epochs 20
+  ```
+  
+  #### 3. Generar letras
+  
+  ```
+  python src/generate.py --model models/lstm/best_model.pt \
+    --prompt "In Dema there's no choice, but in Trench I'm not afraid of"
+  ```
+  
+  #### 4. Evaluar con métricas
+  
+  ```
+  python src/analyze_novelty.py \
+    --corpus data/raw/canciones.txt \
+    --outputs outputs/sample_rnn.txt outputs/sample_lstm.txt outputs/sample_gru.txt \
+    --out_dir results/novelty
+  ```
+  
+  ------
+  
+  ### Fine-tuning con Mistral (Transformer)
+  
+  Ejecutado en el servidor de CIMAT:
+  
+  ```
+  conda activate mistral-env
+  python src/generate/test_generate.py
+  ```
+  
+  Ejemplo:
+  
+  ```
+  prompt = "Write a song in the style of Twenty One Pilots about self-discovery"
+  ```
+  
+  O mediante SLURM:
+  
+  ```
+  sbatch scripts/generate_mistral_offline.slurm
+  ```
+  
+  | Modelo       | PPL ↓ | Novelty ↑ (Bigram) | Novelty ↑ (Trigram) | Observaciones                 |
+  | ------------ | ----- | ------------------ | ------------------- | ----------------------------- |
+  | RNN          | Alto  | 57.49%             | 78.16%              | Tiende a memorizar            |
+  | LSTM         | Bajo  | 65.58%             | 92.16%              | Mejor equilibrio              |
+  | GRU          | Medio | 62.32%             | 92.72%              | Coherencia similar            |
+  | Mistral (FT) | Bajo  | —                  | —                   | Estilo y coherencia mejoradas |
+  
+  
+  
+  ## PARTE II — Modelos de Clasificación
+  
+  ### Objetivo
+  
+  Clasificar fragmentos de canciones en **5 categorías ordinales** (1–5), explorando diferentes arquitecturas y regularizaciones.
+  
+  ------
+  
+  ### Flujo general
+  
+  #### 1. Preparar dataset
+  
+  ```
+  python -m src.data.prepare_meia \
+    --input data/raw/MeIA.csv \
+    --out_dir data/processed/classif/five \
+    --scheme five --max_len 256 --min_freq 2 --val_size 0.10 --test_size 0.10
+  ```
+  
+  #### 2. Entrenar modelos
+  
+  **CNN:**
+  
+  ```
+  python -m src.train.train_cnn --data_dir data/processed/classif/five \
+    --out_dir models/cnn/exp_textcnn_k345_f128_lr1e-3 \
+    --embed_dim 256 --kernel_sizes 3,4,5 --num_filters 128 \
+    --lr 1e-3 --weight_decay 1e-4 --proj_dropout 0.5 --epochs 20
+  ```
+  
+  **RNN / LSTM / GRU:**
+  
+  ```
+  python -m src.train.train_rnnclf_01 \
+    --data_dir data/processed/classif/five \
+    --out_dir models/lstm/exp_bilstm_max_regstrong \
+    --rnn_type lstm --embed_dim 256 --hidden_size 256 \
+    --num_layers 1 --bidirectional --pool max \
+    --emb_dropout 0.3 --rnn_dropout 0.2 --proj_dropout 0.6 \
+    --lr 8e-4 --weight_decay 2e-4 --batch_size 64 --epochs 20
+  ```
+  
+  #### 3. Evaluar
+  
+  ```
+  python -m src.eval.evaluate_rnn \
+    --data_dir data/processed/classif/five \
+    --ckpt models/lstm/exp_bilstm_max_regstrong/best_model.pt \
+    --out_dir models/lstm/exp_bilstm_max_regstrong
+  ```
+  
+  ------
+  
+  ## BETO (Transformer español)
+  
+  Fine-tuning ejecutado en el **cluster CIMAT**, con un modelo base de **BETO (dccuchile/bert-base-spanish-wwm-cased)**.
+   Se adaptó el script `fine_tune_beto.py` para clasificación ordinal (5 clases).
+  
+  ```
+  sbatch scripts/train_beto.slurm
+  ```
+  
+  ------
+  
+  ## Conclusiones generales
+  
+  - **Generativos:**
+     Las LSTM ofrecen el mejor equilibrio entre coherencia y novedad; los Transformers (Mistral) superan a los modelos clásicos en estilo y consistencia sintáctica.
+  - **Clasificatorios:**
+     Los modelos secuenciales bi-direccionales (LSTM/GRU) superan a CNNs tradicionales, pero **BETO** logra un salto claro al incorporar contexto global y embeddings preentrenados.
+  - **Regularización y pooling** impactan más que la capacidad del modelo:
+     Dropout ≈0.5 y `pool=max` resultaron ser los mejores parámetros generales.
+  - **Uso del cluster CIMAT** permitió entrenamiento distribuido eficiente tanto para Mistral como BETO.
+  
+  ------
+  
+  ## Referencias
+  
+  - Jurafsky & Martin, *Speech and Language Processing* (3ª ed.)
+  - Hugging Face Transformers
+  - PyTorch Documentation
+  - Danqi Chen et al., *BERT for Spanish (BETO)*
+  - Experimentos propios sobre corpus de *Twenty One Pilots*
+  
+  ## Autor
+  
+  * César M. Aguirre Calzadilla
+  
+  
+  
+  ## Licencia
+  
   Este proyecto está bajo la Licencia MIT.
 

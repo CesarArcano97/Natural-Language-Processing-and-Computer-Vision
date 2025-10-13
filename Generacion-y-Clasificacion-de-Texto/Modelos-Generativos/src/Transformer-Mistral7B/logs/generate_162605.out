@@ -1,0 +1,29 @@
+🔹 Iniciando generación en nodo: g-0-1 - Job 162605
+Sat Oct  4 01:23:38 PM CST 2025
+🔹 Usando modelo base: /home/est_posgrado_cesar.aguirre/mistral-project/models/base/Mistral-7B-Instruct-v0.2
+🔹 Intentando cargar adaptadores LoRA desde: /home/est_posgrado_cesar.aguirre/mistral-project/models/finetuned/t21p_lr2e-4_ep3_bs2x4_20251004_033651/final_model
+
+Adaptadores LoRA encontrados. Cargando...
+🔹 Fusionando LoRA para inferencia...
+
+Generando canción 1 con prompt:
+In the city lights I find myself
+------------------------------------------------------------
+Guardada: /home/est_posgrado_cesar.aguirre/mistral-project/results/generations/song_1_20251004_132406.txt
+
+
+Generando canción 2 con prompt:
+They say I'm broken but I'm breathing
+------------------------------------------------------------
+Guardada: /home/est_posgrado_cesar.aguirre/mistral-project/results/generations/song_2_20251004_132415.txt
+
+
+Generando canción 3 con prompt:
+Sometimes my shadow sings louder than I do
+------------------------------------------------------------
+Guardada: /home/est_posgrado_cesar.aguirre/mistral-project/results/generations/song_3_20251004_132424.txt
+
+
+Generación completada. Revisa la carpeta results/generations/
+Generación completada
+Sat Oct  4 01:24:26 PM CST 2025

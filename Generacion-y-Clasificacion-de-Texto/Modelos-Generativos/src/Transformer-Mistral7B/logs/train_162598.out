@@ -1,0 +1,15 @@
+🔹 Iniciando entrenamiento en g-0-1 - Job 162598
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+🔹 Cargando modelo base Mistral en 4-bit (offline)...
+==((====))==  Unsloth 2025.9.7: Fast Mistral patching. Transformers: 4.51.3.
+   \\   /|    NVIDIA TITAN RTX. Num GPUs = 2. Max memory: 23.645 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.8.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.4.0
+\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.32.post2. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+/home/est_posgrado_cesar.aguirre/mistral-project/models/base/Mistral-7B-Instruct-v0.2 does not have a padding token! Will use pad_token = <unk>.
+🔹 Aplicando LoRA (~1% de parámetros entrenados)...
+🔹 Cargando dataset JSONL (campo='text')...
+Iniciando entrenamiento...
+Entrenamiento finalizado en Sat Oct  4 03:29:49 AM CST 2025 :)

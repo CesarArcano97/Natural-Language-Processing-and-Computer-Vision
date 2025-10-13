@@ -1,0 +1,15 @@
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:11,  5.65s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:12<00:06,  6.33s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.37s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.30s/it]
+Unsloth: Dropout = 0 is supported for fast patching. You are using dropout = 0.05.
+Unsloth will patch all other layers, except LoRA matrices, causing a performance hit.
+Unsloth 2025.9.7 patched 32 layers with 0 QKV layers, 0 O layers and 0 MLP layers.
+Traceback (most recent call last):
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/src/train/train_mistral_offline.py", line 71, in <module>
+    args = SFTConfig(
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/unsloth_compiled_cache/UnslothSFTTrainer.py", line 324, in __init__
+    super().__init__(
+  File "<string>", line 142, in __init__
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/training_args.py", line 2100, in __post_init__
+    raise NotImplementedError(
+NotImplementedError: data_seed requires Accelerate version `accelerate` >= 1.1.0. This is not supported and we recommend you to update your version.

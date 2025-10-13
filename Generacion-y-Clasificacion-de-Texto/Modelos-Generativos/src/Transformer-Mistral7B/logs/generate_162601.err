@@ -1,0 +1,12 @@
+/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+Traceback (most recent call last):
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/src/infer/generate_mistral_offline.py", line 38, in <module>
+    base_model = AutoModelForCausalLM.from_pretrained(
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4342, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+TypeError: MistralForCausalLM.__init__() got an unexpected keyword argument 'dtype'

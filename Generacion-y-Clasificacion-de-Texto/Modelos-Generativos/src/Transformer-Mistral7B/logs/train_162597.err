@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/est_posgrado_cesar.aguirre/mistral-project/src/train/train_mistral_offline.py", line 17, in <module>
+    from unsloth import FastLanguageModel
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/__init__.py", line 157, in <module>
+    from .models import *
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/models/__init__.py", line 15, in <module>
+    from .loader  import FastLanguageModel
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/models/loader.py", line 16, in <module>
+    from .llama   import FastLlamaModel, logger
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/models/llama.py", line 31, in <module>
+    from ..kernels import *
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/kernels/__init__.py", line 15, in <module>
+    from .cross_entropy_loss import (
+  File "/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/unsloth/kernels/cross_entropy_loss.py", line 380, in <module>
+    from transformers.models.llama.modeling_llama import (
+ImportError: cannot import name 'List' from 'transformers.models.llama.modeling_llama' (/home/est_posgrado_cesar.aguirre/miniconda3/envs/mistral-env/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py)

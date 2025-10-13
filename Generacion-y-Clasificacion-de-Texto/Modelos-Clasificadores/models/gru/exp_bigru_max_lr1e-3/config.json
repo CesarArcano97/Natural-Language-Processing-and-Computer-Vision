@@ -1,0 +1,39 @@
+{
+  "args": {
+    "data_dir": "data/processed/classif/five",
+    "out_dir": "models/gru/exp_bigru_max_lr1e-3",
+    "rnn_type": "gru",
+    "embed_dim": 256,
+    "hidden_size": 256,
+    "num_layers": 1,
+    "bidirectional": true,
+    "pool": "max",
+    "emb_dropout": 0.2,
+    "rnn_dropout": 0.2,
+    "proj_dropout": 0.5,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "label_smoothing": 0.0,
+    "word_dropout": 0.0,
+    "onecycle": false,
+    "max_grad_norm": 1.0,
+    "batch_size": 64,
+    "epochs": 20,
+    "patience": 5,
+    "seed": 42,
+    "num_workers": 2
+  },
+  "meta": {
+    "vocab_size": 8541,
+    "pad_idx": 0,
+    "unk_idx": 1,
+    "label_map": {
+      "1": 0,
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 4
+    }
+  },
+  "num_params": 2978565
+}
