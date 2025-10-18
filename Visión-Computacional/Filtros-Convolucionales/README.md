@@ -1,7 +1,5 @@
 # Filtros de Imagen en CPU vs. GPU con CUDA
 
-![Texto alternativo para la imagen](Natural-Language-Processing-and-Computer-Vision/Visión-Computacional/Filtros-Convolucionales/imagenes/Filtros_GPU/La_Ofrende.png)
-
 Este proyecto implementa y compara el rendimiento de tres filtros clásicos de procesamiento de imágenes bajo dos enfoques de ejecución:
 
 1. **Ejecución en CPU**: Utilizando librerías estándar de Python como `NumPy` y `SciPy`.
