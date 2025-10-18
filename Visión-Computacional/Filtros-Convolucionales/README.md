@@ -1,3 +1,4 @@
+# Filtros de Imagen en CPU vs. GPU con CUDA
 
 Este proyecto implementa y compara el rendimiento de tres filtros clásicos de procesamiento de imágenes bajo dos enfoques de ejecución:
 
