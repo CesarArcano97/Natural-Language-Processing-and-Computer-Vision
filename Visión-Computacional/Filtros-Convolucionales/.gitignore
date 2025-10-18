@@ -1,0 +1,11 @@
+# Ignorar todos los archivos por defecto
+*
+
+# Incluir solo los archivos y directorios específicos
+!códigos/
+!códigos/**
+!imagenes/
+!imagenes/**
+!README.md
+!Reporte.pdf
+!.gitignore
